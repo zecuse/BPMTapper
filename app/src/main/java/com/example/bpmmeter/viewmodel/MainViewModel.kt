@@ -53,9 +53,9 @@ class MainViewModel: ViewModel()
 			sum = 60 / (sum / 1000)
 			return String.Companion
 				.format(locale = Locale.getDefault(),
-				        format = "%.2f",
+				        format = "%.1f",
 				        sum)
-				.padStart(length = 6,
+				.padStart(length = 5,
 				          padChar = ' ')
 		}
 	}
