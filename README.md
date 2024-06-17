@@ -1,2 +1,3 @@
 # BPMTapper
-A simple button tapper to find the BPM of something
+
+![Logo](./app/src/main/res/mipmap-hdpi/ic_launcher.webp "Logo")
