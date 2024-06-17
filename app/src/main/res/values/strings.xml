@@ -1,0 +1,8 @@
+<resources>
+	<string name="app_name">BPM Tapper</string>
+	<string name="start">Start tapping</string>
+	<string name="keep">" Keep tapping"</string>
+	<string name="bpm">BPM</string>
+	<string name="tap">TAP</string>
+	<string name="reset">RESET</string>
+</resources>
