@@ -17,6 +17,6 @@ The app remembers the time between (at most) your last 10 taps. Your more recent
 
 ## Screenshots
 
-|Portrait|Landscape|
+|Portrait (dark mode)|Landscape (light mode)|
 |---|---|
 |![BPMTapper Portrait](https://github.com/zecuse/BPMTapper/assets/19420775/9c9bd2af-9fa0-4f46-b531-7592d3280708)|![BPMTapper Landscape](https://github.com/zecuse/BPMTapper/assets/19420775/e4a6ea18-b415-4536-a51f-a15dd55d1013)|
