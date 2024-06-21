@@ -85,20 +85,22 @@ fun AppLayout(state: SettingsState, onEvent: (SettingsEvent) -> Unit)
 		.background(color = MaterialTheme.colorScheme.background)) {
 		when (configuration.orientation)
 		{
-			Configuration.ORIENTATION_LANDSCAPE -> LandscapeLayout(main = mainModel)
+			Configuration.ORIENTATION_LANDSCAPE -> LandscapeLayout(settings = state,
+			                                                       onEvent = onEvent,
+			                                                       main = mainModel)
 			else                                -> PortraitLayout(main = mainModel,
 			                                                      modifier = Modifier.align(alignment = Alignment.BottomCenter))
 		}
 		SettingsBar(settings = state,
-		            main = mainModel,
-		            onEvent)
+		            onEvent = onEvent,
+		            main = mainModel)
 	}
 }
 
 @Composable
 fun SettingsBar(settings: SettingsState,
-                main: MainViewModel,
                 onEvent: (SettingsEvent) -> Unit,
+                main: MainViewModel,
                 modifier: Modifier = Modifier)
 {
 	val toggleVisibility = main::toggleVisibility
@@ -172,23 +174,30 @@ fun PortraitLayout(main: MainViewModel, modifier: Modifier = Modifier)
 }
 
 @Composable
-fun LandscapeLayout(main: MainViewModel, modifier: Modifier = Modifier)
+fun LandscapeLayout(settings: SettingsState,
+                    onEvent: (SettingsEvent) -> Unit,
+                    main: MainViewModel,
+                    modifier: Modifier = Modifier)
 {
 	Column(horizontalAlignment = Alignment.CenterHorizontally,
 	       modifier = modifier.fillMaxSize()) {
 		Box(contentAlignment = Alignment.BottomCenter,
 		    modifier = Modifier.fillMaxHeight(MaterialTheme.ratio.septenth)) {
-			LandControls(main)
+			LandControls(settings = settings, main = main)
 		}
 		Box(contentAlignment = Alignment.TopCenter,
 		    modifier = Modifier.fillMaxSize()) {
-			ChangeHands(main)
+			ChangeHands(settings = settings,
+			            onEvent = onEvent,
+			            main = main)
 		}
 	}
 }
 
 @Composable
-fun LandControls(main: MainViewModel, modifier: Modifier = Modifier)
+fun LandControls(settings: SettingsState,
+                 main: MainViewModel,
+                 modifier: Modifier = Modifier)
 {
 	var text by remember {
 		mutableStateOf(main.start)
@@ -209,25 +218,28 @@ fun LandControls(main: MainViewModel, modifier: Modifier = Modifier)
 	Row(verticalAlignment = Alignment.CenterVertically,
 	    horizontalArrangement = Arrangement.SpaceEvenly,
 	    modifier = modifier.fillMaxWidth()) {
-		if (main.leftHand) TapButton {tap()}
+		if (settings.leftHanded) TapButton {tap()}
 		else ResetButton {reset()}
 		BPMText(text = text)
-		if (!main.leftHand) TapButton {tap()}
+		if (!settings.leftHanded) TapButton {tap()}
 		else ResetButton {reset()}
 	}
 }
 
 @Composable
-fun ChangeHands(main: MainViewModel, modifier: Modifier = Modifier)
+fun ChangeHands(settings: SettingsState,
+                onEvent: (SettingsEvent) -> Unit,
+                main: MainViewModel,
+                modifier: Modifier = Modifier)
 {
 	val switchHands = {
-		main.switchHands()
+		onEvent(SettingsEvent.SetHandedness(!settings.leftHanded))
 		if (main.pickerVisibility) main.toggleVisibility()
 	}
 	Row(verticalAlignment = Alignment.CenterVertically,
 	    horizontalArrangement = Arrangement.SpaceEvenly,
 	    modifier = modifier.fillMaxWidth()) {
-		if (!main.leftHand)
+		if (!settings.leftHanded)
 		{
 			HandIcon {switchHands()}
 			Spacer(modifier = Modifier.width(132.dp))

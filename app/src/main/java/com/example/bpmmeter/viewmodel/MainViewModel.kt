@@ -67,12 +67,4 @@ class MainViewModel: ViewModel()
 	{
 		pickerVisibility = !pickerVisibility
 	}
-
-	var leftHand by mutableStateOf(true)
-		private set
-
-	fun switchHands()
-	{
-		leftHand = !leftHand
-	}
 }

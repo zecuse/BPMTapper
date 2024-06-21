@@ -9,12 +9,14 @@ import com.example.bpmmeter.ui.theme.ThemeType
 
 data class SettingsState(val theme: ThemeType = ThemeType.Dark,
                          val color: MyColors = MyColors.Green,
+                         val leftHanded: Boolean = true,
                          val spacing: String = "default",
                          val typography: Typography = defaultType)
 
 @Entity
 data class SettingsData(val theme: ThemeType = ThemeType.Dark,
                         val color: MyColors = MyColors.Green,
+                        val leftHanded: Boolean = true,
                         val spacing: String = "default",
                         @PrimaryKey(autoGenerate = true)
                         val id: Int = 0)

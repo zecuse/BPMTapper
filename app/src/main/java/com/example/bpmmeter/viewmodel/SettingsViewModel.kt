@@ -40,6 +40,7 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 				}
 				it.copy(theme = settings.theme,
 				        color = settings.color,
+				        leftHanded = settings.leftHanded,
 				        spacing = spacing,
 				        typography = typography)
 			}
@@ -58,6 +59,15 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 					settings = settings.copy(color = event.color)
 					dao.updateSetting(settings)
 					_state.update {it.copy(color = event.color)}
+				}
+			}
+			is SettingsEvent.SetHandedness ->
+			{
+				viewModelScope.launch {
+					var settings = dao.getSettings().first() ?: SettingsData()
+					settings = settings.copy(leftHanded = event.leftHanded)
+					dao.updateSetting(settings)
+					_state.update {it.copy(leftHanded = event.leftHanded)}
 				}
 			}
 			is SettingsEvent.SetSpacing ->
