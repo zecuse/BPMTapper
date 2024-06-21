@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -23,6 +24,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,52 +36,69 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.room.Room
 import com.example.bpmmeter.R
+import com.example.bpmmeter.database.SettingsDatabase
+import com.example.bpmmeter.viewmodel.SettingsEvent
+import com.example.bpmmeter.model.SettingsState
 import com.example.bpmmeter.ui.theme.BPMTapperTheme
+import com.example.bpmmeter.ui.theme.MyColors
 import com.example.bpmmeter.ui.theme.ratio
+import com.example.bpmmeter.ui.theme.ThemeType
 import com.example.bpmmeter.viewmodel.MainViewModel
-import com.example.bpmmeter.viewmodel.MyColors
 import com.example.bpmmeter.viewmodel.SettingsFactory
 import com.example.bpmmeter.viewmodel.SettingsViewModel
-import com.example.bpmmeter.viewmodel.ThemeType
 
 class MainActivity: ComponentActivity()
 {
+	private val db by lazy {
+		Room.databaseBuilder(context = applicationContext,
+		                     klass = SettingsDatabase::class.java,
+		                     name = "settings.db")
+			.build()
+	}
+
+	private val settingsModel by viewModels<SettingsViewModel>(factoryProducer = {SettingsFactory(db)})
+
 	override fun onCreate(savedInstanceState: Bundle?)
 	{
 		super.onCreate(savedInstanceState)
+//		applicationContext.deleteDatabase("settings.db")
 		setContent {
-			val settingsModel = viewModel<SettingsViewModel>(factory = SettingsFactory())
-			AppLayout(settingsModel)
+			val state by settingsModel.state.collectAsState()
+			BPMTapperTheme(settings = state) {
+				AppLayout(state,
+				          settingsModel::onEvent)
+			}
 		}
 	}
 }
 
 @Composable
-fun AppLayout(settingsModel: SettingsViewModel)
+fun AppLayout(state: SettingsState, onEvent: (SettingsEvent) -> Unit)
 {
 	val configuration = LocalConfiguration.current
-	BPMTapperTheme(settingsModel) {
-		val mainModel = viewModel<MainViewModel>()
-		InitVMStrings(mainModel)
-		Box(modifier = Modifier
-			.fillMaxSize()
-			.background(color = MaterialTheme.colorScheme.background)) {
-			when (configuration.orientation)
-			{
-				Configuration.ORIENTATION_LANDSCAPE -> LandscapeLayout(main = mainModel)
-				else                                -> PortraitLayout(main = mainModel,
-				                                                      modifier = Modifier.align(alignment = Alignment.BottomCenter))
-			}
-			SettingsBar(settings = settingsModel,
-			            main = mainModel)
+	val mainModel = viewModel<MainViewModel>()
+	InitVMStrings(mainModel)
+	Box(modifier = Modifier
+		.fillMaxSize()
+		.background(color = MaterialTheme.colorScheme.background)) {
+		when (configuration.orientation)
+		{
+			Configuration.ORIENTATION_LANDSCAPE -> LandscapeLayout(main = mainModel)
+			else                                -> PortraitLayout(main = mainModel,
+			                                                      modifier = Modifier.align(alignment = Alignment.BottomCenter))
 		}
+		SettingsBar(settings = state,
+		            main = mainModel,
+		            onEvent)
 	}
 }
 
 @Composable
-fun SettingsBar(settings: SettingsViewModel,
+fun SettingsBar(settings: SettingsState,
                 main: MainViewModel,
+                onEvent: (SettingsEvent) -> Unit,
                 modifier: Modifier = Modifier)
 {
 	val toggleVisibility = main::toggleVisibility
@@ -89,12 +108,21 @@ fun SettingsBar(settings: SettingsViewModel,
 		    modifier = Modifier
 			    .width(120.dp)
 			    .padding(vertical = 10.dp)) {
-			LightDark(theme = settings.themeType) {
-				settings.changeTheme()
-				if (settings.themeType == ThemeType.Auto && main.pickerVisibility) toggleVisibility()
+			LightDark(theme = settings.theme) {
+				val newTheme = when (settings.theme)
+				{
+					ThemeType.Auto  -> ThemeType.Dark
+					ThemeType.Dark  -> ThemeType.Light
+					ThemeType.Light -> ThemeType.Auto
+				}
+				onEvent(SettingsEvent.SetTheme(newTheme))
+				if (newTheme == ThemeType.Auto && main.pickerVisibility) toggleVisibility()
 			}
-			ColorPicker(settings.themeType) {toggleVisibility()}
-			FontFace {settings.changeFont()}
+			ColorPicker(settings.theme) {toggleVisibility()}
+			FontFace {
+				val newFont = if (settings.spacing == "mono") "default" else "mono"
+				onEvent(SettingsEvent.SetSpacing(newFont))
+			}
 		}
 		AnimatedVisibility(visible = main.pickerVisibility) {
 			LazyVerticalGrid(columns = GridCells.Fixed(6),
@@ -102,9 +130,9 @@ fun SettingsBar(settings: SettingsViewModel,
 			                 modifier = Modifier.widthIn(min = 0.dp,
 			                                             max = 400.dp)) {
 				items(count = MyColors.entries.size) {colorIdx ->
-					ColorCard(theme = settings.themeType,
+					ColorCard(theme = settings.theme,
 					          color = MyColors.entries[colorIdx]) {
-						settings.changeColors(it)
+						onEvent(SettingsEvent.SetColor(it))
 						toggleVisibility()
 					}
 				}
@@ -119,19 +147,19 @@ fun PortraitLayout(main: MainViewModel, modifier: Modifier = Modifier)
 	var text by remember {
 		mutableStateOf(main.start)
 	}
-	val tap = {
-		main.beat()
+	val display = {
 		text = main.display()
 		if (main.pickerVisibility) main.toggleVisibility()
+	}
+	val tap = {
+		main.beat()
+		display()
 	}
 	val reset = {
 		main.reset()
-		text = main.display()
-		if (main.pickerVisibility) main.toggleVisibility()
+		display()
 	}
-	LaunchedEffect(Unit) {
-		text = main.display()
-	}
+	LaunchedEffect(Unit) {display()}
 	Column(horizontalAlignment = Alignment.CenterHorizontally,
 	       verticalArrangement = Arrangement.SpaceEvenly,
 	       modifier = modifier
@@ -165,19 +193,19 @@ fun LandControls(main: MainViewModel, modifier: Modifier = Modifier)
 	var text by remember {
 		mutableStateOf(main.start)
 	}
-	val tap = {
-		main.beat()
+	val display = {
 		text = main.display()
 		if (main.pickerVisibility) main.toggleVisibility()
+	}
+	val tap = {
+		main.beat()
+		display()
 	}
 	val reset = {
 		main.reset()
-		text = main.display()
-		if (main.pickerVisibility) main.toggleVisibility()
+		display()
 	}
-	LaunchedEffect(Unit) {
-		text = main.display()
-	}
+	LaunchedEffect(Unit) {display()}
 	Row(verticalAlignment = Alignment.CenterVertically,
 	    horizontalArrangement = Arrangement.SpaceEvenly,
 	    modifier = modifier.fillMaxWidth()) {
@@ -224,9 +252,11 @@ fun InitVMStrings(main: MainViewModel)
 @Composable
 fun PortraitPreview()
 {
-	val settingsModel =
-		viewModel<SettingsViewModel>(factory = SettingsFactory(preview = true))
-	AppLayout(settingsModel)
+	val onEvent = {_: SettingsEvent ->}
+	BPMTapperTheme {
+		AppLayout(state = SettingsState(),
+		          onEvent = onEvent)
+	}
 }
 
 @Preview(showSystemUi = true,
@@ -234,8 +264,10 @@ fun PortraitPreview()
 @Composable
 fun LandscapePreview()
 {
-	val settingsModel =
-		viewModel<SettingsViewModel>(factory = SettingsFactory(preview = true,
-		                                                       orient = Configuration.ORIENTATION_LANDSCAPE))
-	AppLayout(settingsModel)
+	val state = SettingsState(theme = ThemeType.Light)
+	val onEvent = {_: SettingsEvent ->}
+	BPMTapperTheme(settings = state) {
+		AppLayout(state = SettingsState(),
+		          onEvent = onEvent)
+	}
 }

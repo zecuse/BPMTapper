@@ -1,6 +1,8 @@
 plugins {
 	alias(libs.plugins.android.application)
 	alias(libs.plugins.jetbrains.kotlin.android)
+	alias(libs.plugins.com.google.devtools.ksp)
+	alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -65,5 +67,9 @@ dependencies {
 	debugImplementation(libs.androidx.ui.tooling)
 	debugImplementation(libs.androidx.ui.test.manifest)
 
-	implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.2")
+	implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+	// Room
+	implementation(libs.androidx.room.ktx)
+	ksp(libs.androidx.room.compiler)
 }

@@ -13,7 +13,7 @@ A simple button tapper that displays the BPM of how fast you tap. Inspired by a 
 
 ## A note about tapping
 
-The app remembers the time between (at most) your last 10 taps. Your more recent taps are more influencial to the displayed BPM. Depending on how much your new tapping speed differs from the previous (e.g. 180 -> 60 or 20 -> 120) it may take up to 3–5 taps to get an accurate reading. If you're trying to go to a very slow rate (e.g. < 30), it's better to just reset to clear this tap history.
+The app remembers the time between (at most) your last 10 taps. Your more recent taps are more influential to the displayed BPM. Depending on how much your new tapping speed differs from the previous (e.g. 180 -> 60 or 20 -> 120) it may take up to 3–5 taps to get an accurate reading. If you're trying to go to a very slow rate (e.g. < 30), it's better to just reset to clear this tap history.
 
 ## Screenshots
 

@@ -45,28 +45,32 @@ class MainViewModel: ViewModel()
 			// Older values have smaller weights, 9 down to 0
 			val pos = meter.maxTimes - meter.times.size
 			// Calculate weighted average
-			meter.times.forEachIndexed { idx, it ->
+			meter.times.forEachIndexed {idx, it ->
 				sum += meter.weights[pos + idx] * it
 			}
-			sum /= meter.weights.takeLast(meter.times.size).sum()
+			sum /= meter.weights.takeLast(meter.times.size)
+				.sum()
 			// Convert to BPM
 			sum = 60 / (sum / 1000)
-			return String.Companion
-				.format(locale = Locale.getDefault(),
-				        format = "%.1f",
-				        sum)
+			return String.Companion.format(locale = Locale.getDefault(),
+			                               format = "%.1f",
+			                               sum)
 				.padStart(length = 5,
 				          padChar = ' ')
 		}
 	}
 
 	var pickerVisibility by mutableStateOf(false)
+		private set
+
 	fun toggleVisibility()
 	{
 		pickerVisibility = !pickerVisibility
 	}
 
 	var leftHand by mutableStateOf(true)
+		private set
+
 	fun switchHands()
 	{
 		leftHand = !leftHand

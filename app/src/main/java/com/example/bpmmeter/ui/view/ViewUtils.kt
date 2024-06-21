@@ -29,16 +29,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.bpmmeter.R
+import com.example.bpmmeter.model.SettingsState
 import com.example.bpmmeter.ui.theme.BPMTapperTheme
 import com.example.bpmmeter.ui.theme.ColorSchemes
 import com.example.bpmmeter.ui.theme.contrast
+import com.example.bpmmeter.ui.theme.MyColors
 import com.example.bpmmeter.ui.theme.shapes.roundrect
-import com.example.bpmmeter.viewmodel.MyColors
-import com.example.bpmmeter.viewmodel.SettingsFactory
-import com.example.bpmmeter.viewmodel.SettingsViewModel
-import com.example.bpmmeter.viewmodel.ThemeType
+import com.example.bpmmeter.ui.theme.ThemeType
 
 @Composable
 fun BPMText(text: String, modifier: Modifier = Modifier)
@@ -262,24 +260,24 @@ fun FontFace(onClick: () -> Unit)
 @Composable
 private fun TestDisplay()
 {
-	val settingsModel =
-		viewModel<SettingsViewModel>(factory = SettingsFactory(preview = true))
-	BPMTapperTheme(settingsModel) {
+	val state = SettingsState(theme = ThemeType.Dark,
+	                          color = MyColors.Green)
+	BPMTapperTheme(settings = state) {
 		Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
 			BPMText(text = stringResource(R.string.start))
 			TapButton {}
 			ResetButton {}
 			Row {
-				LightDark(theme = settingsModel.themeType) {}
-				ColorPicker(theme = settingsModel.themeType) {}
+				LightDark(theme = state.theme) {}
+				ColorPicker(theme = state.theme) {}
 				FontFace {}
 			}
 			Row {
 				HandIcon {}
 				HandIcon(false) {}
 			}
-			ColorCard(theme = ThemeType.Dark,
-			          color = MyColors.Magenta) {}
+			ColorCard(theme = state.theme,
+			          color = state.color) {}
 		}
 	}
 }

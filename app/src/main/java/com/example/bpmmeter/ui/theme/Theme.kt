@@ -11,9 +11,17 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.platform.LocalContext
-import com.example.bpmmeter.viewmodel.MyColors
-import com.example.bpmmeter.viewmodel.SettingsViewModel
-import com.example.bpmmeter.viewmodel.ThemeType
+import com.example.bpmmeter.model.SettingsState
+
+enum class MyColors
+{
+	Red, Orange, Yellow, Lime, Green, Spring, Cyan, Sky, Blue, Violet, Purple, Magenta
+}
+
+enum class ThemeType
+{
+	Auto, Dark, Light
+}
 
 object ColorSchemes
 {
@@ -80,55 +88,53 @@ object ColorSchemes
 
 @Composable
 fun BPMTapperTheme(
-	settings: SettingsViewModel = SettingsViewModel(),
+	settings: SettingsState = SettingsState(),
 	content: @Composable () -> Unit,
 )
 {
 	val dynamicAvailable = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
-	val dynamicTheme = dynamicAvailable && settings.themeType == ThemeType.Auto
+	val dynamicTheme = dynamicAvailable && settings.theme == ThemeType.Auto
 	val colorScheme = when
 	{
-		dynamicTheme && isSystemInDarkTheme()                                            -> dynamicDarkColorScheme(LocalContext.current)
-		dynamicTheme && !isSystemInDarkTheme()                                           -> dynamicLightColorScheme(LocalContext.current)
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Red     -> ColorSchemes.DarkRedColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Orange  -> ColorSchemes.DarkOrangeColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Yellow  -> ColorSchemes.DarkYellowColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Lime    -> ColorSchemes.DarkLimeColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Green   -> ColorSchemes.DarkGreenColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Spring  -> ColorSchemes.DarkSpringColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Cyan    -> ColorSchemes.DarkCyanColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Sky     -> ColorSchemes.DarkSkyColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Blue    -> ColorSchemes.DarkBlueColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Violet  -> ColorSchemes.DarkVioletColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Purple  -> ColorSchemes.DarkPurpleColorScheme
-		settings.themeType == ThemeType.Dark && settings.colorScheme == MyColors.Magenta -> ColorSchemes.DarkMagentaColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Red    -> ColorSchemes.LightRedColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Orange -> ColorSchemes.LightOrangeColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Yellow -> ColorSchemes.LightYellowColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Lime   -> ColorSchemes.LightLimeColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Green  -> ColorSchemes.LightGreenColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Spring -> ColorSchemes.LightSpringColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Cyan   -> ColorSchemes.LightCyanColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Sky    -> ColorSchemes.LightSkyColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Blue   -> ColorSchemes.LightBlueColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Violet -> ColorSchemes.LightVioletColorScheme
-		settings.themeType == ThemeType.Light && settings.colorScheme == MyColors.Purple -> ColorSchemes.LightPurpleColorScheme
-		else                                                                             -> ColorSchemes.LightMagentaColorScheme
+		dynamicTheme && isSystemInDarkTheme()                                  -> dynamicDarkColorScheme(LocalContext.current)
+		dynamicTheme && !isSystemInDarkTheme()                                 -> dynamicLightColorScheme(LocalContext.current)
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Red     -> ColorSchemes.DarkRedColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Orange  -> ColorSchemes.DarkOrangeColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Yellow  -> ColorSchemes.DarkYellowColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Lime    -> ColorSchemes.DarkLimeColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Green   -> ColorSchemes.DarkGreenColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Spring  -> ColorSchemes.DarkSpringColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Cyan    -> ColorSchemes.DarkCyanColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Sky     -> ColorSchemes.DarkSkyColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Blue    -> ColorSchemes.DarkBlueColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Violet  -> ColorSchemes.DarkVioletColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Purple  -> ColorSchemes.DarkPurpleColorScheme
+		settings.theme == ThemeType.Dark && settings.color == MyColors.Magenta -> ColorSchemes.DarkMagentaColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Red    -> ColorSchemes.LightRedColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Orange -> ColorSchemes.LightOrangeColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Yellow -> ColorSchemes.LightYellowColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Lime   -> ColorSchemes.LightLimeColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Green  -> ColorSchemes.LightGreenColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Spring -> ColorSchemes.LightSpringColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Cyan   -> ColorSchemes.LightCyanColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Sky    -> ColorSchemes.LightSkyColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Blue   -> ColorSchemes.LightBlueColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Violet -> ColorSchemes.LightVioletColorScheme
+		settings.theme == ThemeType.Light && settings.color == MyColors.Purple -> ColorSchemes.LightPurpleColorScheme
+		else                                                                   -> ColorSchemes.LightMagentaColorScheme
 	}
 	val contrastColors = when
 	{
-		settings.themeType == ThemeType.Auto && isSystemInDarkTheme() -> TextContrast(high = White,
-		                                                                              med = Grey90,
-		                                                                              low = Grey70)
-		settings.themeType == ThemeType.Dark                          -> TextContrast(high = White,
-		                                                                              med = Grey90,
-		                                                                              low = Grey70)
-		else                                                          -> TextContrast(high = Black,
-		                                                                              med = Grey15,
-		                                                                              low = Grey35)
+		settings.theme == ThemeType.Auto && isSystemInDarkTheme() -> TextContrast(high = White,
+		                                                                          med = Grey90,
+		                                                                          low = Grey70)
+		settings.theme == ThemeType.Dark                          -> TextContrast(high = White,
+		                                                                          med = Grey90,
+		                                                                          low = Grey70)
+		else                                                      -> TextContrast(high = Black,
+		                                                                          med = Grey15,
+		                                                                          low = Grey35)
 	}
-	settings.typography = changeFont(base = settings.typography,
-	                                 fontFam = settings.fontFamily)
 
 	CompositionLocalProvider(LocalTextColors provides contrastColors) {
 		MaterialTheme(colorScheme = colorScheme,
