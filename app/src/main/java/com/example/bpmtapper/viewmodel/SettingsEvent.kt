@@ -1,7 +1,7 @@
-package com.example.bpmmeter.viewmodel
+package com.example.bpmtapper.viewmodel
 
-import com.example.bpmmeter.ui.theme.MyColors
-import com.example.bpmmeter.ui.theme.ThemeType
+import com.example.bpmtapper.ui.theme.MyColors
+import com.example.bpmtapper.ui.theme.ThemeType
 
 sealed interface SettingsEvent
 {

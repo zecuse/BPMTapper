@@ -1,4 +1,4 @@
-package com.example.bpmmeter.viewmodel
+package com.example.bpmtapper.viewmodel
 
 sealed interface MainEvent
 {

@@ -1,4 +1,4 @@
-package com.example.bpmmeter.ui.view
+package com.example.bpmtapper.ui.view
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -38,17 +38,17 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.room.Room
 import com.example.bpmmeter.R
-import com.example.bpmmeter.database.SettingsDatabase
-import com.example.bpmmeter.viewmodel.SettingsEvent
-import com.example.bpmmeter.ui.theme.BPMTapperTheme
-import com.example.bpmmeter.ui.theme.MyColors
-import com.example.bpmmeter.ui.theme.ratio
-import com.example.bpmmeter.ui.theme.ThemeType
-import com.example.bpmmeter.viewmodel.FakeDao
-import com.example.bpmmeter.viewmodel.MainEvent
-import com.example.bpmmeter.viewmodel.MainViewModel
-import com.example.bpmmeter.viewmodel.SettingsFactory
-import com.example.bpmmeter.viewmodel.SettingsViewModel
+import com.example.bpmtapper.database.SettingsDatabase
+import com.example.bpmtapper.viewmodel.SettingsEvent
+import com.example.bpmtapper.ui.theme.BPMTapperTheme
+import com.example.bpmtapper.ui.theme.MyColors
+import com.example.bpmtapper.ui.theme.ratio
+import com.example.bpmtapper.ui.theme.ThemeType
+import com.example.bpmtapper.viewmodel.FakeDao
+import com.example.bpmtapper.viewmodel.MainEvent
+import com.example.bpmtapper.viewmodel.MainViewModel
+import com.example.bpmtapper.viewmodel.SettingsFactory
+import com.example.bpmtapper.viewmodel.SettingsViewModel
 
 class MainActivity: ComponentActivity()
 {

@@ -1,8 +1,8 @@
-package com.example.bpmmeter.viewmodel
+package com.example.bpmtapper.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.bpmmeter.model.BPMState
+import com.example.bpmtapper.model.BPMState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn

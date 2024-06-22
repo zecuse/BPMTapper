@@ -1,4 +1,4 @@
-package com.example.bpmmeter
+package com.example.bpmtapper
 
 import org.junit.Test
 

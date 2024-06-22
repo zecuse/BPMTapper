@@ -1,4 +1,4 @@
-package com.example.bpmmeter.model
+package com.example.bpmtapper.model
 
 import java.util.ArrayDeque
 import java.util.Queue

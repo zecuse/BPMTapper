@@ -1,16 +1,16 @@
-package com.example.bpmmeter.viewmodel
+package com.example.bpmtapper.viewmodel
 
 import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.bpmmeter.database.SettingsDao
-import com.example.bpmmeter.database.SettingsDatabase
-import com.example.bpmmeter.model.SettingsData
-import com.example.bpmmeter.model.SettingsState
-import com.example.bpmmeter.ui.theme.AppFonts
-import com.example.bpmmeter.ui.theme.changeFont
-import com.example.bpmmeter.ui.theme.defaultType
+import com.example.bpmtapper.database.SettingsDao
+import com.example.bpmtapper.database.SettingsDatabase
+import com.example.bpmtapper.model.SettingsData
+import com.example.bpmtapper.model.SettingsState
+import com.example.bpmtapper.ui.theme.AppFonts
+import com.example.bpmtapper.ui.theme.changeFont
+import com.example.bpmtapper.ui.theme.defaultType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -52,7 +52,7 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 	{
 		when (event)
 		{
-			is SettingsEvent.SetColor   ->
+			is SettingsEvent.SetColor      ->
 			{
 				viewModelScope.launch {
 					var settings = dao.getSettings()
@@ -71,7 +71,7 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 					_state.update {it.copy(leftHanded = event.leftHanded)}
 				}
 			}
-			is SettingsEvent.SetSpacing ->
+			is SettingsEvent.SetSpacing    ->
 			{
 				viewModelScope.launch {
 					var settings = dao.getSettings()
@@ -89,7 +89,7 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 					}
 				}
 			}
-			is SettingsEvent.SetTheme   ->
+			is SettingsEvent.SetTheme      ->
 			{
 				viewModelScope.launch {
 					var settings = dao.getSettings()
