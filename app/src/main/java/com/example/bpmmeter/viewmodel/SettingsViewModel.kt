@@ -11,6 +11,7 @@ import com.example.bpmmeter.model.SettingsState
 import com.example.bpmmeter.ui.theme.AppFonts
 import com.example.bpmmeter.ui.theme.changeFont
 import com.example.bpmmeter.ui.theme.defaultType
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.first
@@ -110,5 +111,17 @@ class SettingsFactory(
 	override fun <T: ViewModel> create(modelClass: Class<T>): T
 	{
 		return SettingsViewModel(db.dao) as T
+	}
+}
+
+class FakeDao: SettingsDao
+{
+	override suspend fun updateSetting(settings: SettingsData)
+	{
+	}
+
+	override fun getSettings(): Flow<SettingsData?>
+	{
+		return MutableStateFlow(SettingsData())
 	}
 }

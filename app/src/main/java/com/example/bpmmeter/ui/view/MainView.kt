@@ -40,11 +40,12 @@ import androidx.room.Room
 import com.example.bpmmeter.R
 import com.example.bpmmeter.database.SettingsDatabase
 import com.example.bpmmeter.viewmodel.SettingsEvent
-import com.example.bpmmeter.model.SettingsState
 import com.example.bpmmeter.ui.theme.BPMTapperTheme
 import com.example.bpmmeter.ui.theme.MyColors
 import com.example.bpmmeter.ui.theme.ratio
 import com.example.bpmmeter.ui.theme.ThemeType
+import com.example.bpmmeter.viewmodel.FakeDao
+import com.example.bpmmeter.viewmodel.MainEvent
 import com.example.bpmmeter.viewmodel.MainViewModel
 import com.example.bpmmeter.viewmodel.SettingsFactory
 import com.example.bpmmeter.viewmodel.SettingsViewModel
@@ -65,17 +66,15 @@ class MainActivity: ComponentActivity()
 		super.onCreate(savedInstanceState)
 //		applicationContext.deleteDatabase("settings.db")
 		setContent {
-			val state by settingsModel.state.collectAsState()
-			BPMTapperTheme(settings = state) {
-				AppLayout(state,
-				          settingsModel::onEvent)
+			BPMTapperTheme(settingsModel.state.collectAsState().value) {
+				AppLayout(settingsModel)
 			}
 		}
 	}
 }
 
 @Composable
-fun AppLayout(state: SettingsState, onEvent: (SettingsEvent) -> Unit)
+fun AppLayout(settingsModel: SettingsViewModel)
 {
 	val configuration = LocalConfiguration.current
 	val mainModel = viewModel<MainViewModel>()
@@ -85,56 +84,54 @@ fun AppLayout(state: SettingsState, onEvent: (SettingsEvent) -> Unit)
 		.background(color = MaterialTheme.colorScheme.background)) {
 		when (configuration.orientation)
 		{
-			Configuration.ORIENTATION_LANDSCAPE -> LandscapeLayout(settings = state,
-			                                                       onEvent = onEvent,
+			Configuration.ORIENTATION_LANDSCAPE -> LandscapeLayout(settings = settingsModel,
 			                                                       main = mainModel)
 			else                                -> PortraitLayout(main = mainModel,
 			                                                      modifier = Modifier.align(alignment = Alignment.BottomCenter))
 		}
-		SettingsBar(settings = state,
-		            onEvent = onEvent,
+		SettingsBar(settings = settingsModel,
 		            main = mainModel)
 	}
 }
 
 @Composable
-fun SettingsBar(settings: SettingsState,
-                onEvent: (SettingsEvent) -> Unit,
+fun SettingsBar(settings: SettingsViewModel,
                 main: MainViewModel,
                 modifier: Modifier = Modifier)
 {
-	val toggleVisibility = main::toggleVisibility
+	val toggleVisibility = {main.onEvent(MainEvent.TogglePicker)}
 	Column(horizontalAlignment = Alignment.CenterHorizontally,
 	       modifier = modifier.fillMaxWidth()) {
 		Row(horizontalArrangement = Arrangement.SpaceBetween,
 		    modifier = Modifier
 			    .width(120.dp)
 			    .padding(vertical = 10.dp)) {
-			LightDark(theme = settings.theme) {
-				val newTheme = when (settings.theme)
+			LightDark(theme = settings.state.collectAsState().value.theme) {
+				val newTheme = when (settings.state.value.theme)
 				{
 					ThemeType.Auto  -> ThemeType.Dark
 					ThemeType.Dark  -> ThemeType.Light
 					ThemeType.Light -> ThemeType.Auto
 				}
-				onEvent(SettingsEvent.SetTheme(newTheme))
-				if (newTheme == ThemeType.Auto && main.pickerVisibility) toggleVisibility()
+				settings.onEvent(SettingsEvent.SetTheme(newTheme))
+				if (newTheme == ThemeType.Auto && main.state.value.pickerVisibility) toggleVisibility()
 			}
-			ColorPicker(settings.theme) {toggleVisibility()}
+			ColorPicker(settings.state.collectAsState().value.theme) {toggleVisibility()}
 			FontFace {
-				val newFont = if (settings.spacing == "mono") "default" else "mono"
-				onEvent(SettingsEvent.SetSpacing(newFont))
+				val newFont =
+					if (settings.state.value.spacing == "mono") "default" else "mono"
+				settings.onEvent(SettingsEvent.SetSpacing(newFont))
 			}
 		}
-		AnimatedVisibility(visible = main.pickerVisibility) {
+		AnimatedVisibility(visible = main.state.collectAsState().value.pickerVisibility) {
 			LazyVerticalGrid(columns = GridCells.Fixed(6),
 			                 contentPadding = PaddingValues(all = 5.dp),
 			                 modifier = Modifier.widthIn(min = 0.dp,
 			                                             max = 400.dp)) {
 				items(count = MyColors.entries.size) {colorIdx ->
-					ColorCard(theme = settings.theme,
+					ColorCard(theme = settings.state.collectAsState().value.theme,
 					          color = MyColors.entries[colorIdx]) {
-						onEvent(SettingsEvent.SetColor(it))
+						settings.onEvent(SettingsEvent.SetColor(it))
 						toggleVisibility()
 					}
 				}
@@ -147,18 +144,19 @@ fun SettingsBar(settings: SettingsState,
 fun PortraitLayout(main: MainViewModel, modifier: Modifier = Modifier)
 {
 	var text by remember {
-		mutableStateOf(main.start)
+		mutableStateOf(main.state.value.startText)
 	}
 	val display = {
-		text = main.display()
-		if (main.pickerVisibility) main.toggleVisibility()
+		main.onEvent(MainEvent.Display)
+		text = main.state.value.display
+		if (main.state.value.pickerVisibility) main.onEvent(MainEvent.TogglePicker)
 	}
 	val tap = {
-		main.beat()
+		main.onEvent(MainEvent.Tap)
 		display()
 	}
 	val reset = {
-		main.reset()
+		main.onEvent(MainEvent.Reset)
 		display()
 	}
 	LaunchedEffect(Unit) {display()}
@@ -174,8 +172,7 @@ fun PortraitLayout(main: MainViewModel, modifier: Modifier = Modifier)
 }
 
 @Composable
-fun LandscapeLayout(settings: SettingsState,
-                    onEvent: (SettingsEvent) -> Unit,
+fun LandscapeLayout(settings: SettingsViewModel,
                     main: MainViewModel,
                     modifier: Modifier = Modifier)
 {
@@ -183,63 +180,63 @@ fun LandscapeLayout(settings: SettingsState,
 	       modifier = modifier.fillMaxSize()) {
 		Box(contentAlignment = Alignment.BottomCenter,
 		    modifier = Modifier.fillMaxHeight(MaterialTheme.ratio.septenth)) {
-			LandControls(settings = settings, main = main)
+			LandControls(settings = settings,
+			             main = main)
 		}
 		Box(contentAlignment = Alignment.TopCenter,
 		    modifier = Modifier.fillMaxSize()) {
 			ChangeHands(settings = settings,
-			            onEvent = onEvent,
 			            main = main)
 		}
 	}
 }
 
 @Composable
-fun LandControls(settings: SettingsState,
+fun LandControls(settings: SettingsViewModel,
                  main: MainViewModel,
                  modifier: Modifier = Modifier)
 {
 	var text by remember {
-		mutableStateOf(main.start)
+		mutableStateOf(main.state.value.startText)
 	}
 	val display = {
-		text = main.display()
-		if (main.pickerVisibility) main.toggleVisibility()
+		main.onEvent(MainEvent.Display)
+		text = main.state.value.display
+		if (main.state.value.pickerVisibility) main.onEvent(MainEvent.TogglePicker)
 	}
 	val tap = {
-		main.beat()
+		main.onEvent(MainEvent.Tap)
 		display()
 	}
 	val reset = {
-		main.reset()
+		main.onEvent(MainEvent.Reset)
 		display()
 	}
 	LaunchedEffect(Unit) {display()}
 	Row(verticalAlignment = Alignment.CenterVertically,
 	    horizontalArrangement = Arrangement.SpaceEvenly,
 	    modifier = modifier.fillMaxWidth()) {
-		if (settings.leftHanded) TapButton {tap()}
+		if (settings.state.collectAsState().value.leftHanded) TapButton {tap()}
 		else ResetButton {reset()}
 		BPMText(text = text)
-		if (!settings.leftHanded) TapButton {tap()}
+		if (!settings.state.collectAsState().value.leftHanded) TapButton {tap()}
 		else ResetButton {reset()}
 	}
 }
 
 @Composable
-fun ChangeHands(settings: SettingsState,
-                onEvent: (SettingsEvent) -> Unit,
+fun ChangeHands(settings: SettingsViewModel,
                 main: MainViewModel,
                 modifier: Modifier = Modifier)
 {
 	val switchHands = {
-		onEvent(SettingsEvent.SetHandedness(!settings.leftHanded))
-		if (main.pickerVisibility) main.toggleVisibility()
+		settings.onEvent(SettingsEvent.SetHandedness(!settings.state.value.leftHanded))
+		if (main.state.value.pickerVisibility) main.onEvent(MainEvent.TogglePicker)
 	}
 	Row(verticalAlignment = Alignment.CenterVertically,
 	    horizontalArrangement = Arrangement.SpaceEvenly,
 	    modifier = modifier.fillMaxWidth()) {
-		if (!settings.leftHanded)
+		if (!settings.state.collectAsState().value.leftHanded)
 		{
 			HandIcon {switchHands()}
 			Spacer(modifier = Modifier.width(132.dp))
@@ -255,8 +252,8 @@ fun ChangeHands(settings: SettingsState,
 @Composable
 fun InitVMStrings(main: MainViewModel)
 {
-	main.start = stringResource(R.string.start)
-	main.keep = stringResource(R.string.keep)
+	main.onEvent(MainEvent.Init(stringResource(R.string.start),
+	                            stringResource(R.string.keep)))
 }
 
 @Preview(showSystemUi = true,
@@ -264,10 +261,9 @@ fun InitVMStrings(main: MainViewModel)
 @Composable
 fun PortraitPreview()
 {
-	val onEvent = {_: SettingsEvent ->}
+	val fake = SettingsViewModel(FakeDao())
 	BPMTapperTheme {
-		AppLayout(state = SettingsState(),
-		          onEvent = onEvent)
+		AppLayout(fake)
 	}
 }
 
@@ -276,10 +272,9 @@ fun PortraitPreview()
 @Composable
 fun LandscapePreview()
 {
-	val state = SettingsState(theme = ThemeType.Light)
-	val onEvent = {_: SettingsEvent ->}
-	BPMTapperTheme(settings = state) {
-		AppLayout(state = SettingsState(),
-		          onEvent = onEvent)
+	val fake = SettingsViewModel(FakeDao())
+	fake.onEvent(SettingsEvent.SetTheme(ThemeType.Light))
+	BPMTapperTheme(settings = fake.state.collectAsState().value) {
+		AppLayout(fake)
 	}
 }
