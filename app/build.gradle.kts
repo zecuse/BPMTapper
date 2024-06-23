@@ -3,6 +3,8 @@ plugins {
 	alias(libs.plugins.jetbrains.kotlin.android)
 	alias(libs.plugins.com.google.devtools.ksp)
 	alias(libs.plugins.compose.compiler)
+	alias(libs.plugins.junit)
+	alias(libs.plugins.room)
 }
 
 android {
@@ -21,7 +23,9 @@ android {
 			useSupportLibrary = true
 		}
 	}
-
+	room {
+		schemaDirectory("$projectDir/schemas")
+	}
 	buildTypes {
 		release {
 			isMinifyEnabled = false
@@ -50,26 +54,31 @@ android {
 }
 
 dependencies {
-
+	// Android
 	implementation(libs.androidx.core.ktx)
 	implementation(libs.androidx.lifecycle.runtime.ktx)
-	implementation(libs.androidx.activity.compose)
-	implementation(platform(libs.androidx.compose.bom))
-	implementation(libs.androidx.ui)
-	implementation(libs.androidx.ui.graphics)
-	implementation(libs.androidx.ui.tooling.preview)
-	implementation(libs.androidx.material3)
-	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
-	androidTestImplementation(platform(libs.androidx.compose.bom))
-	androidTestImplementation(libs.androidx.ui.test.junit4)
-	debugImplementation(libs.androidx.ui.tooling)
-	debugImplementation(libs.androidx.ui.test.manifest)
 
-	implementation(libs.androidx.lifecycle.viewmodel.compose)
+	// Unit Tests
+	testImplementation(libs.junit.jupiter)
+	testRuntimeOnly(libs.junit.jupiter.engine)
+	testImplementation(libs.google.truth)
+
+	// Jetpack Compose
+	implementation(platform(libs.compose.bom))
+	implementation(libs.compose.activity)
+	implementation(libs.compose.material3)
+	implementation(libs.compose.viewmodel)
+	implementation(libs.compose.ui)
+	implementation(libs.compose.ui.graphics)
+	implementation(libs.compose.ui.tooling.preview)
+	debugImplementation(libs.compose.ui.tooling)
+	debugImplementation(libs.compose.ui.test.manifest)
+	androidTestImplementation(libs.compose.ui.test.junit4)
+	androidTestImplementation(platform(libs.compose.bom))
 
 	// Room
-	implementation(libs.androidx.room.ktx)
-	ksp(libs.androidx.room.compiler)
+	implementation(libs.room.ktx)
+	ksp(libs.room.compiler)
 }
