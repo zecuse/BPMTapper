@@ -26,6 +26,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -41,6 +44,7 @@ import com.example.bpmtapper.ui.theme.ThemeType
 @Composable
 fun BPMText(text: String, modifier: Modifier = Modifier)
 {
+	val reading = stringResource(R.string.reading)
 	Box(contentAlignment = Alignment.Center,
 	    modifier = modifier
 		    .width(400.dp)
@@ -53,7 +57,8 @@ fun BPMText(text: String, modifier: Modifier = Modifier)
 			     style = MaterialTheme.typography.displayMedium,
 			     modifier = Modifier
 				     .height(65.dp)
-				     .wrapContentHeight(align = Alignment.Bottom))
+				     .wrapContentHeight(align = Alignment.Bottom)
+				     .semantics {contentDescription = reading})
 			Text(text = stringResource(R.string.bpm),
 			     color = MaterialTheme.contrast.high,
 			     style = MaterialTheme.typography.titleLarge,
@@ -67,11 +72,14 @@ fun BPMText(text: String, modifier: Modifier = Modifier)
 @Composable
 fun TapButton(modifier: Modifier = Modifier, tap: () -> Unit)
 {
+	val tapText = stringResource(R.string.tap)
 	val size = 200.dp
 	Button(onClick = tap,
 	       shape = MaterialTheme.roundrect(size = size,
 	                                       radius = size / 2),
-	       modifier = modifier.size(size)) {
+	       modifier = modifier
+		       .size(size)
+		       .semantics {contentDescription = tapText}) {
 		CenterText(text = stringResource(R.string.tap),
 		           style = MaterialTheme.typography.headlineLarge)
 	}
@@ -80,10 +88,12 @@ fun TapButton(modifier: Modifier = Modifier, tap: () -> Unit)
 @Composable
 fun ResetButton(modifier: Modifier = Modifier, reset: () -> Unit)
 {
+	val resetText = stringResource(R.string.reset)
 	val size = 200.dp
 	Box(contentAlignment = Alignment.Center,
 	    modifier = modifier.size(size)) {
-		Button(onClick = reset) {
+		Button(onClick = reset,
+		       modifier = Modifier.semantics {contentDescription = resetText}) {
 			CenterText(text = stringResource(R.string.reset),
 			           style = MaterialTheme.typography.titleLarge)
 		}
@@ -103,11 +113,15 @@ fun CenterText(text: String, style: TextStyle)
 @Composable
 fun HandIcon(left: Boolean = true, onClick: () -> Unit)
 {
-	Box(modifier = Modifier.clickable {onClick()}) {
+	val leftHand = stringResource(R.string.left_hand)
+	val rightHand = stringResource(R.string.right_hand)
+	Box(modifier = Modifier
+		.clickable {onClick()}
+		.semantics {stateDescription = if (left) leftHand else rightHand}) {
 		if (left)
 		{
 			Icon(painter = painterResource(R.drawable.baseline_back_hand_24),
-			     contentDescription = "left",
+			     contentDescription = null,
 			     tint = MaterialTheme.colorScheme.primary,
 			     modifier = Modifier
 				     .size(50.dp)
@@ -122,7 +136,7 @@ fun HandIcon(left: Boolean = true, onClick: () -> Unit)
 		else
 		{
 			Icon(painter = painterResource(R.drawable.baseline_back_hand_24),
-			     contentDescription = "right",
+			     contentDescription = null,
 			     tint = MaterialTheme.colorScheme.primary,
 			     modifier = Modifier
 				     .size(50.dp)
@@ -140,16 +154,23 @@ fun HandIcon(left: Boolean = true, onClick: () -> Unit)
 @Composable
 fun LightDark(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Unit)
 {
-	Box(modifier = modifier.clickable {onClick()}) {
+	val autoTheme = stringResource(R.string.auto_theme)
+	val darkMode = stringResource(R.string.dark_mode)
+	val lightMode = stringResource(R.string.light_mode)
+	Box(modifier = modifier
+		.clickable {onClick()}
+		.semantics {
+			stateDescription = if (theme == ThemeType.Dark) darkMode else lightMode
+		}) {
 		if (theme == ThemeType.Light || (theme == ThemeType.Auto && !isSystemInDarkTheme()))
 		{
 			Icon(painter = painterResource(R.drawable.baseline_light_mode_24),
 			     tint = MaterialTheme.colorScheme.primary,
-			     contentDescription = "light",
+			     contentDescription = null,
 			     modifier = Modifier.size(35.dp))
 		}
 		Icon(painter = painterResource(R.drawable.baseline_lightbulb_24),
-		     contentDescription = "dark",
+		     contentDescription = null,
 		     tint = MaterialTheme.colorScheme.primary,
 		     modifier = Modifier
 			     .padding(top = 5.dp)
@@ -159,8 +180,12 @@ fun LightDark(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Un
 			Text(text = "A",
 			     color = MaterialTheme.colorScheme.onPrimary,
 			     style = MaterialTheme.typography.titleMedium,
-			     modifier = Modifier.padding(start = 12.dp,
-			                                 top = 8.dp))
+			     modifier = Modifier
+				     .padding(start = 12.dp,
+				              top = 8.dp)
+				     .semantics {
+					     this.contentDescription = autoTheme
+				     })
 		}
 	}
 }
@@ -171,7 +196,7 @@ fun ColorPicker(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> 
 	if (theme != ThemeType.Auto)
 	{
 		Icon(painter = painterResource(R.drawable.baseline_color_lens_24),
-		     contentDescription = "Pick color",
+		     contentDescription = stringResource(R.string.pick_color),
 		     tint = MaterialTheme.colorScheme.primary,
 		     modifier = modifier
 			     .clickable {onClick()}
@@ -230,7 +255,8 @@ fun ColorCard(
 	    modifier = modifier
 		    .size(65.dp)
 		    .background(color = picked.primary)
-		    .clickable {onClick(color)}) {
+		    .clickable {onClick(color)}
+		    .semantics {contentDescription = color.name}) {
 		Text(text = color.name,
 		     color = picked.onPrimary,
 		     style = MaterialTheme.typography.labelLarge)
@@ -241,6 +267,7 @@ fun ColorCard(
 fun FontFace(onClick: () -> Unit)
 {
 	val size = 30.dp
+	val spacing = stringResource(R.string.change_font)
 	Box(contentAlignment = Alignment.Center,
 	    modifier = Modifier
 		    .padding(top = 7.dp)
@@ -249,7 +276,8 @@ fun FontFace(onClick: () -> Unit)
 		                                                      second = size),
 		                                          radius = 7.dp))
 		    .background(color = MaterialTheme.colorScheme.primary)
-		    .clickable {onClick()}) {
+		    .clickable {onClick()}
+		    .semantics {contentDescription = spacing}) {
 		Text(text = "A",
 		     color = MaterialTheme.colorScheme.onPrimary,
 		     style = MaterialTheme.typography.titleLarge)

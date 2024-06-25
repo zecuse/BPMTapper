@@ -5,4 +5,12 @@
 	<string name="bpm">BPM</string>
 	<string name="tap">TAP</string>
 	<string name="reset">RESET</string>
+	<string name="dark_mode">Dark mode</string>
+	<string name="light_mode">Light mode</string>
+	<string name="auto_theme">Auto theme</string>
+	<string name="pick_color">Pick a color</string>
+	<string name="change_font">Change font</string>
+	<string name="left_hand">Left hand</string>
+	<string name="right_hand">Right hand</string>
+	<string name="reading">Reading</string>
 </resources>

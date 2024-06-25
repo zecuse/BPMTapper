@@ -1,5 +1,6 @@
 package com.example.bpmtapper.viewmodel
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -9,29 +10,25 @@ import com.example.bpmtapper.database.SettingsDatabase
 import com.example.bpmtapper.model.SettingsData
 import com.example.bpmtapper.model.SettingsState
 import com.example.bpmtapper.ui.theme.AppFonts
+import com.example.bpmtapper.ui.theme.MyColors
+import com.example.bpmtapper.ui.theme.ThemeType
 import com.example.bpmtapper.ui.theme.changeFont
 import com.example.bpmtapper.ui.theme.defaultType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 {
-	private val _state = MutableStateFlow(SettingsState())
-	val state = _state.stateIn(viewModelScope,
-	                           SharingStarted.WhileSubscribed(),
-	                           SettingsState())
+	val state = mutableStateOf(SettingsState())
 
 	init
 	{
 		viewModelScope.launch {
 			val settings = dao.getSettings()
 				               .first() ?: SettingsData()
-			_state.update {
+			state.apply {
 				val spacing = settings.spacing
 				val typography = when (spacing)
 				{
@@ -39,11 +36,11 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 					                     fontFam = AppFonts.sourceCodePro)
 					else   -> defaultType
 				}
-				it.copy(theme = settings.theme,
-				        color = settings.color,
-				        leftHanded = settings.leftHanded,
-				        spacing = spacing,
-				        typography = typography)
+				this.value = this.value.copy(theme = settings.theme,
+				                             color = settings.color,
+				                             leftHanded = settings.leftHanded,
+				                             spacing = spacing,
+				                             typography = typography)
 			}
 		}
 	}
@@ -59,16 +56,19 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 						               .first() ?: SettingsData()
 					settings = settings.copy(color = event.color)
 					dao.updateSetting(settings)
-					_state.update {it.copy(color = event.color)}
+					state.apply {this.value = this.value.copy(color = event.color)}
 				}
 			}
 			is SettingsEvent.SetHandedness ->
 			{
 				viewModelScope.launch {
-					var settings = dao.getSettings().first() ?: SettingsData()
+					var settings = dao.getSettings()
+						               .first() ?: SettingsData()
 					settings = settings.copy(leftHanded = event.leftHanded)
 					dao.updateSetting(settings)
-					_state.update {it.copy(leftHanded = event.leftHanded)}
+					state.apply {
+						this.value = this.value.copy(leftHanded = event.leftHanded)
+					}
 				}
 			}
 			is SettingsEvent.SetSpacing    ->
@@ -78,14 +78,14 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 						               .first() ?: SettingsData()
 					settings = settings.copy(spacing = event.spacing)
 					dao.updateSetting(settings)
-					_state.update {
+					state.apply {
 						val spacing = event.spacing
 						val font =
 							if (spacing == "mono") AppFonts.sourceCodePro else FontFamily.Default
 						val typography = changeFont(base = state.value.typography,
 						                            fontFam = font)
-						it.copy(spacing = spacing,
-						        typography = typography)
+						this.value = this.value.copy(spacing = spacing,
+						                             typography = typography)
 					}
 				}
 			}
@@ -96,7 +96,7 @@ class SettingsViewModel(private val dao: SettingsDao): ViewModel()
 						               .first() ?: SettingsData()
 					settings = settings.copy(theme = event.theme)
 					dao.updateSetting(settings)
-					_state.update {it.copy(theme = event.theme)}
+					state.apply {this.value = this.value.copy(theme = event.theme)}
 				}
 			}
 		}
@@ -116,12 +116,29 @@ class SettingsFactory(
 
 class FakeDao: SettingsDao
 {
+	private var fakeSettings = HashMap<String, Any>()
+
+	init
+	{
+		fakeSettings["theme"] = ThemeType.Light
+		fakeSettings["color"] = MyColors.Magenta
+		fakeSettings["leftHanded"] = false
+		fakeSettings["spacing"] = "default"
+	}
+
 	override suspend fun updateSetting(settings: SettingsData)
 	{
+		fakeSettings["theme"] = settings.theme
+		fakeSettings["color"] = settings.color
+		fakeSettings["leftHanded"] = settings.leftHanded
+		fakeSettings["spacing"] = settings.spacing
 	}
 
 	override fun getSettings(): Flow<SettingsData?>
 	{
-		return MutableStateFlow(SettingsData())
+		return MutableStateFlow(SettingsData(theme = fakeSettings["theme"] as ThemeType,
+		                                     color = fakeSettings["color"] as MyColors,
+		                                     leftHanded = fakeSettings["leftHanded"] as Boolean,
+		                                     spacing = fakeSettings["spacing"] as String))
 	}
 }
