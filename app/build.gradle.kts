@@ -63,6 +63,7 @@ dependencies {
 	// Unit Tests
 	testImplementation(libs.junit.jupiter)
 	testRuntimeOnly(libs.junit.jupiter.engine)
+	testImplementation(libs.kotlin.test)
 	testImplementation(libs.google.truth)
 
 	// Jetpack Compose
