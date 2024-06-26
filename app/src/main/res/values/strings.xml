@@ -13,4 +13,6 @@
 	<string name="left_hand">Left hand</string>
 	<string name="right_hand">Right hand</string>
 	<string name="reading">Reading</string>
+	<string name="right_state">Right hand state</string>
+	<string name="left_state">Left hand state</string>
 </resources>

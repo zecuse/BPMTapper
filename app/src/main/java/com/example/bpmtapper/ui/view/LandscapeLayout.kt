@@ -18,8 +18,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.bpmmeter.R
 import com.example.bpmtapper.ui.theme.BPMTapperTheme
 import com.example.bpmtapper.ui.theme.ThemeType
 import com.example.bpmtapper.ui.theme.ratio
@@ -54,6 +58,8 @@ fun LandControls(settings: SettingsViewModel,
                  main: MainViewModel,
                  modifier: Modifier = Modifier)
 {
+	val left = stringResource(R.string.left_state)
+	val right = stringResource(R.string.right_state)
 	var text by remember {
 		mutableStateOf(main.state.value.startText)
 	}
@@ -73,7 +79,11 @@ fun LandControls(settings: SettingsViewModel,
 	LaunchedEffect(Unit) {display()}
 	Row(verticalAlignment = Alignment.CenterVertically,
 	    horizontalArrangement = Arrangement.SpaceEvenly,
-	    modifier = modifier.fillMaxWidth()) {
+	    modifier = modifier
+		    .fillMaxWidth()
+		    .semantics {
+			    stateDescription = if (settings.state.value.leftHanded) left else right
+		    }) {
 		if (settings.state.value.leftHanded) TapButton {tap()}
 		else ResetButton {reset()}
 		BPMText(text = text)
