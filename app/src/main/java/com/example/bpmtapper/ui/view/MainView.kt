@@ -69,7 +69,7 @@ fun AppLayout(settingsModel: SettingsViewModel)
 }
 
 @Composable
-fun InitVMStrings(main: MainViewModel)
+private fun InitVMStrings(main: MainViewModel)
 {
 	main.onEvent(MainEvent.Init(stringResource(R.string.start),
 	                            stringResource(R.string.keep)))

@@ -55,7 +55,7 @@ fun PortraitLayout(main: MainViewModel, modifier: Modifier = Modifier)
 @Preview(showSystemUi = true,
          device = "spec:width=540dp,height=1230dp,orientation=portrait")
 @Composable
-fun PortraitPreview()
+private fun PortraitPreview()
 {
 	val fake = SettingsViewModel(FakeDao())
 	BPMTapperTheme {

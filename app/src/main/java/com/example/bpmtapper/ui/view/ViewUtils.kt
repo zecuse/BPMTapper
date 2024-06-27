@@ -37,9 +37,9 @@ import com.example.bpmtapper.model.SettingsState
 import com.example.bpmtapper.ui.theme.BPMTapperTheme
 import com.example.bpmtapper.ui.theme.ColorSchemes
 import com.example.bpmtapper.ui.theme.contrast
-import com.example.bpmtapper.ui.theme.MyColors
+import com.example.bpmtapper.ui.theme.AppColor
 import com.example.bpmtapper.ui.theme.shapes.roundrect
-import com.example.bpmtapper.ui.theme.ThemeType
+import com.example.bpmtapper.ui.theme.AppTheme
 
 @Composable
 fun BPMText(text: String, modifier: Modifier = Modifier)
@@ -81,7 +81,8 @@ fun TapButton(modifier: Modifier = Modifier, tap: () -> Unit)
 		       .size(size)
 		       .semantics {contentDescription = tapText}) {
 		CenterText(text = stringResource(R.string.tap),
-		           style = MaterialTheme.typography.headlineLarge)
+		           style = MaterialTheme.typography.displayLarge,
+				   modifier = Modifier.height(72.dp))
 	}
 }
 
@@ -95,23 +96,24 @@ fun ResetButton(modifier: Modifier = Modifier, reset: () -> Unit)
 		Button(onClick = reset,
 		       modifier = Modifier.semantics {contentDescription = resetText}) {
 			CenterText(text = stringResource(R.string.reset),
-			           style = MaterialTheme.typography.titleLarge)
+			           style = MaterialTheme.typography.headlineSmall,
+			           modifier = Modifier.height(36.dp))
 		}
 	}
 }
 
 @Composable
-fun CenterText(text: String, style: TextStyle)
+fun CenterText(text: String, style: TextStyle, modifier: Modifier = Modifier)
 {
 	Box(contentAlignment = Alignment.Center,
-	    modifier = Modifier.height(36.dp)) {
+	    modifier = modifier) {
 		Text(text = text,
 		     style = style)
 	}
 }
 
 @Composable
-fun HandIcon(left: Boolean = true, onClick: () -> Unit)
+fun HandButton(left: Boolean = true, onClick: () -> Unit)
 {
 	val leftHand = stringResource(R.string.left_hand)
 	val rightHand = stringResource(R.string.right_hand)
@@ -152,7 +154,7 @@ fun HandIcon(left: Boolean = true, onClick: () -> Unit)
 }
 
 @Composable
-fun LightDark(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Unit)
+fun ThemeButton(theme: AppTheme, modifier: Modifier = Modifier, onClick: () -> Unit)
 {
 	val autoTheme = stringResource(R.string.auto_theme)
 	val darkMode = stringResource(R.string.dark_mode)
@@ -160,9 +162,9 @@ fun LightDark(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Un
 	Box(modifier = modifier
 		.clickable {onClick()}
 		.semantics {
-			stateDescription = if (theme == ThemeType.Dark) darkMode else lightMode
+			stateDescription = if (theme == AppTheme.Dark) darkMode else lightMode
 		}) {
-		if (theme == ThemeType.Light || (theme == ThemeType.Auto && !isSystemInDarkTheme()))
+		if (theme == AppTheme.Light || (theme == AppTheme.Auto && !isSystemInDarkTheme()))
 		{
 			Icon(painter = painterResource(R.drawable.baseline_light_mode_24),
 			     tint = MaterialTheme.colorScheme.primary,
@@ -175,7 +177,7 @@ fun LightDark(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Un
 		     modifier = Modifier
 			     .padding(top = 5.dp)
 			     .size(35.dp))
-		if (theme == ThemeType.Auto)
+		if (theme == AppTheme.Auto)
 		{
 			Text(text = "A",
 			     color = MaterialTheme.colorScheme.onPrimary,
@@ -191,9 +193,9 @@ fun LightDark(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Un
 }
 
 @Composable
-fun ColorPicker(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> Unit)
+fun ColorPicker(theme: AppTheme, modifier: Modifier = Modifier, onClick: () -> Unit)
 {
-	if (theme != ThemeType.Auto)
+	if (theme != AppTheme.Auto)
 	{
 		Icon(painter = painterResource(R.drawable.baseline_color_lens_24),
 		     contentDescription = stringResource(R.string.pick_color),
@@ -208,28 +210,28 @@ fun ColorPicker(theme: ThemeType, modifier: Modifier = Modifier, onClick: () -> 
 
 @Composable
 fun ColorCard(
-	theme: ThemeType,
-	color: MyColors,
+	theme: AppTheme,
+	color: AppColor,
 	modifier: Modifier = Modifier,
-	onClick: (MyColors) -> Unit,
+	onClick: (AppColor) -> Unit,
 )
 {
 	val picked: ColorScheme
-	if (theme == ThemeType.Dark || (theme == ThemeType.Auto && isSystemInDarkTheme()))
+	if (theme == AppTheme.Dark || (theme == AppTheme.Auto && isSystemInDarkTheme()))
 	{
 		picked = when (color)
 		{
-			MyColors.Red    -> ColorSchemes.DarkRedColorScheme
-			MyColors.Orange -> ColorSchemes.DarkOrangeColorScheme
-			MyColors.Yellow -> ColorSchemes.DarkYellowColorScheme
-			MyColors.Lime   -> ColorSchemes.DarkLimeColorScheme
-			MyColors.Green  -> ColorSchemes.DarkGreenColorScheme
-			MyColors.Spring -> ColorSchemes.DarkSpringColorScheme
-			MyColors.Cyan   -> ColorSchemes.DarkCyanColorScheme
-			MyColors.Sky    -> ColorSchemes.DarkSkyColorScheme
-			MyColors.Blue   -> ColorSchemes.DarkBlueColorScheme
-			MyColors.Violet -> ColorSchemes.DarkVioletColorScheme
-			MyColors.Purple -> ColorSchemes.DarkPurpleColorScheme
+			AppColor.Red    -> ColorSchemes.DarkRedColorScheme
+			AppColor.Orange -> ColorSchemes.DarkOrangeColorScheme
+			AppColor.Yellow -> ColorSchemes.DarkYellowColorScheme
+			AppColor.Lime   -> ColorSchemes.DarkLimeColorScheme
+			AppColor.Green  -> ColorSchemes.DarkGreenColorScheme
+			AppColor.Spring -> ColorSchemes.DarkSpringColorScheme
+			AppColor.Cyan   -> ColorSchemes.DarkCyanColorScheme
+			AppColor.Sky    -> ColorSchemes.DarkSkyColorScheme
+			AppColor.Blue   -> ColorSchemes.DarkBlueColorScheme
+			AppColor.Violet -> ColorSchemes.DarkVioletColorScheme
+			AppColor.Purple -> ColorSchemes.DarkPurpleColorScheme
 			else            -> ColorSchemes.DarkMagentaColorScheme
 		}
 	}
@@ -237,17 +239,17 @@ fun ColorCard(
 	{
 		picked = when (color)
 		{
-			MyColors.Red    -> ColorSchemes.LightRedColorScheme
-			MyColors.Orange -> ColorSchemes.LightOrangeColorScheme
-			MyColors.Yellow -> ColorSchemes.LightYellowColorScheme
-			MyColors.Lime   -> ColorSchemes.LightLimeColorScheme
-			MyColors.Green  -> ColorSchemes.LightGreenColorScheme
-			MyColors.Spring -> ColorSchemes.LightSpringColorScheme
-			MyColors.Cyan   -> ColorSchemes.LightCyanColorScheme
-			MyColors.Sky    -> ColorSchemes.LightSkyColorScheme
-			MyColors.Blue   -> ColorSchemes.LightBlueColorScheme
-			MyColors.Violet -> ColorSchemes.LightVioletColorScheme
-			MyColors.Purple -> ColorSchemes.LightPurpleColorScheme
+			AppColor.Red    -> ColorSchemes.LightRedColorScheme
+			AppColor.Orange -> ColorSchemes.LightOrangeColorScheme
+			AppColor.Yellow -> ColorSchemes.LightYellowColorScheme
+			AppColor.Lime   -> ColorSchemes.LightLimeColorScheme
+			AppColor.Green  -> ColorSchemes.LightGreenColorScheme
+			AppColor.Spring -> ColorSchemes.LightSpringColorScheme
+			AppColor.Cyan   -> ColorSchemes.LightCyanColorScheme
+			AppColor.Sky    -> ColorSchemes.LightSkyColorScheme
+			AppColor.Blue   -> ColorSchemes.LightBlueColorScheme
+			AppColor.Violet -> ColorSchemes.LightVioletColorScheme
+			AppColor.Purple -> ColorSchemes.LightPurpleColorScheme
 			else            -> ColorSchemes.LightMagentaColorScheme
 		}
 	}
@@ -288,21 +290,21 @@ fun FontFace(onClick: () -> Unit)
 @Composable
 private fun TestDisplay()
 {
-	val state = SettingsState(theme = ThemeType.Dark,
-	                          color = MyColors.Green)
+	val state = SettingsState(theme = AppTheme.Dark,
+	                          color = AppColor.Green)
 	BPMTapperTheme(settings = state) {
 		Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.background)) {
 			BPMText(text = stringResource(R.string.start))
 			TapButton {}
 			ResetButton {}
 			Row {
-				LightDark(theme = state.theme) {}
+				ThemeButton(theme = state.theme) {}
 				ColorPicker(theme = state.theme) {}
 				FontFace {}
 			}
 			Row {
-				HandIcon {}
-				HandIcon(false) {}
+				HandButton {}
+				HandButton(false) {}
 			}
 			ColorCard(theme = state.theme,
 			          color = state.color) {}

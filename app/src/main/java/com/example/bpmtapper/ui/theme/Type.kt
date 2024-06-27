@@ -9,6 +9,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.bpmmeter.R
 
+/**
+ * Fonts provided by the app.
+ */
 object AppFonts
 {
 	val sourceCodePro = FontFamily(
@@ -27,9 +30,13 @@ object AppFonts
 	)
 }
 
+/**
+ * @suppress
+ */
 val defaultType = Typography(
 	displayLarge = TextStyle(fontSize = 57.sp,
 	                         fontFamily = FontFamily.Default,
+	                         fontWeight = FontWeight.Bold,
 	                         lineHeight = 64.sp),
 	displayMedium = TextStyle(fontSize = 45.sp,
 	                          fontFamily = FontFamily.Default,
@@ -45,6 +52,7 @@ val defaultType = Typography(
 	                           lineHeight = 36.sp),
 	headlineSmall = TextStyle(fontSize = 24.sp,
 	                          fontFamily = FontFamily.Default,
+	                          fontWeight = FontWeight.SemiBold,
 	                          lineHeight = 32.sp),
 	titleLarge = TextStyle(fontSize = 22.sp,
 	                       fontFamily = FontFamily.Default,
@@ -80,6 +88,14 @@ val defaultType = Typography(
 	                       lineHeight = 16.sp),
 )
 
+/**
+ * Changes the font family used in [base] to [fontFam]
+ *
+ * @param base The target typography to change.
+ * @param fontFam The new font family.
+ *
+ * @return A copy of the [base] typography with the new [fontFam] value.
+ */
 fun changeFont(base: Typography, fontFam: FontFamily) =
 	Typography(displayLarge = base.displayLarge.copy(fontFamily = fontFam),
 	           displayMedium = base.displayMedium.copy(fontFamily = fontFam),

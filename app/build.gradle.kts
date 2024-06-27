@@ -3,6 +3,7 @@ plugins {
 	alias(libs.plugins.jetbrains.kotlin.android)
 	alias(libs.plugins.com.google.devtools.ksp)
 	alias(libs.plugins.compose.compiler)
+	alias(libs.plugins.dokka)
 	alias(libs.plugins.junit)
 	alias(libs.plugins.room)
 }
@@ -49,6 +50,15 @@ android {
 	packaging {
 		resources {
 			excludes += "/META-INF/{AL2.0,LGPL2.1}"
+		}
+	}
+	tasks.dokkaHtml {
+		moduleName.set("BPM Tapper")
+		outputDirectory.set(layout.buildDirectory.dir("docs/html"))
+		dokkaSourceSets {
+			configureEach {
+				includes.from("README.md")
+			}
 		}
 	}
 }

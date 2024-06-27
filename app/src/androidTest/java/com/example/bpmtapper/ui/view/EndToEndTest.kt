@@ -14,7 +14,7 @@ import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
 import com.example.bpmmeter.R
 import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.MyColors
+import com.example.bpmtapper.ui.theme.AppColor
 import com.example.bpmtapper.viewmodel.FakeDao
 import com.example.bpmtapper.viewmodel.MainViewModel
 import com.example.bpmtapper.viewmodel.SettingsViewModel
@@ -65,7 +65,7 @@ class EndToEndTest
 		// Change settings: theme -> Dark, color -> Green, spacing -> mono.
 		theme.performClick().performClick()
 		color.performClick()
-		rule.onNodeWithContentDescription(MyColors.Green.name).performClick()
+		rule.onNodeWithContentDescription(AppColor.Green.name).performClick()
 		spacing.performClick()
 
 		// Tap 10 times. Should result in ~120bpm accounting for method call lag.
@@ -112,7 +112,7 @@ class EndToEndTest
 		// Change settings: theme -> Dark, color -> Green, spacing -> mono, switch hands.
 		theme.performClick().performClick()
 		color.performClick()
-		rule.onNodeWithContentDescription(MyColors.Green.name).performClick()
+		rule.onNodeWithContentDescription(AppColor.Green.name).performClick()
 		spacing.performClick()
 		hand.performClick()
 

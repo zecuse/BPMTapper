@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bpmmeter.R
 import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.ThemeType
+import com.example.bpmtapper.ui.theme.AppTheme
 import com.example.bpmtapper.ui.theme.ratio
 import com.example.bpmtapper.viewmodel.FakeDao
 import com.example.bpmtapper.viewmodel.MainEvent
@@ -54,7 +54,7 @@ fun LandscapeLayout(settings: SettingsViewModel,
 }
 
 @Composable
-fun LandControls(settings: SettingsViewModel,
+private fun LandControls(settings: SettingsViewModel,
                  main: MainViewModel,
                  modifier: Modifier = Modifier)
 {
@@ -93,7 +93,7 @@ fun LandControls(settings: SettingsViewModel,
 }
 
 @Composable
-fun ChangeHands(settings: SettingsViewModel,
+private fun ChangeHands(settings: SettingsViewModel,
                 main: MainViewModel,
                 modifier: Modifier = Modifier)
 {
@@ -106,13 +106,13 @@ fun ChangeHands(settings: SettingsViewModel,
 	    modifier = modifier.fillMaxWidth()) {
 		if (!settings.state.value.leftHanded)
 		{
-			HandIcon {switchHands()}
+			HandButton {switchHands()}
 			Spacer(modifier = Modifier.width(132.dp))
 		}
 		else
 		{
 			Spacer(modifier = Modifier.width(132.dp))
-			HandIcon(false) {switchHands()}
+			HandButton(false) {switchHands()}
 		}
 	}
 }
@@ -120,10 +120,10 @@ fun ChangeHands(settings: SettingsViewModel,
 @Preview(showSystemUi = true,
          device = "spec:width=1230dp,height=540dp,orientation=landscape")
 @Composable
-fun LandscapePreview()
+private fun LandscapePreview()
 {
 	val fake = SettingsViewModel(FakeDao())
-	fake.onEvent(SettingsEvent.SetTheme(ThemeType.Light))
+	fake.onEvent(SettingsEvent.SetTheme(AppTheme.Light))
 	BPMTapperTheme(settings = fake.state.value) {
 		AppLayout(fake)
 	}

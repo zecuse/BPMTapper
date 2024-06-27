@@ -18,10 +18,28 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 
+/**
+ * Creates rectangle shapes with width [w], height [h], and optionally rounded corners with radius [r].
+ *
+ * [r] defaults to sharp corners resulting in normal rectangles.
+ *
+ * The (x, y) components of [r] should be no larger than half the [w] and [h] values, respectively.
+ * This will result in the creation of elliptical shapes inscribed within the rectangle.
+ *
+ * Equal [w] and [h] result in squares.
+ *
+ * Elliptical squares result in circles.
+ *
+ * @param w The size of the rectangle in the x axis.
+ * @param h The size of the rectangle in the y axis.
+ * @param r The definition of the radii for each corner of the rectangle.
+ *
+ * @return The optionally rounded rectangle.
+ */
 class EllipseRect(
 	private val w: Dp,
 	private val h: Dp,
-	private val r: FourCorners,
+	private val r: FourCorners = FourCorners(),
 ): Shape
 {
 	override fun createOutline(
@@ -53,6 +71,16 @@ class EllipseRect(
 	}
 }
 
+/**
+ * Defines the x and y radii used by the corners of a rectangle.
+ *
+ * Defaults to sharp, right angle corners.
+ *
+ * @param topLeft The (x, y) radii pair for the top left corner.
+ * @param topRight The (x, y) radii pair for the top right corner.
+ * @param bottomRight The (x, y) radii pair for the bottom right corner.
+ * @param bottomLeft The (x, y) radii pair for the bottom left corner.
+ */
 data class FourCorners(
 	val topLeft: Pair<Dp, Dp> = Pair(first = 0.dp,
 	                                 second = 0.dp),
@@ -64,6 +92,14 @@ data class FourCorners(
 	                                    second = 0.dp),
 )
 
+/**
+ * Helper function to create rectangles with equal corners with different (x, y) radii.
+ *
+ * @param size The (width, height) of the rectangle.
+ * @param corners The (x, y) radii of the corners.
+ *
+ * @return A rounded rectangle with equal (x, y) radii corners.
+ */
 fun MaterialTheme.roundrect(size: Pair<Dp, Dp>, corners: Pair<Dp, Dp>): EllipseRect
 {
 	return EllipseRect(w = size.first,
@@ -74,6 +110,14 @@ fun MaterialTheme.roundrect(size: Pair<Dp, Dp>, corners: Pair<Dp, Dp>): EllipseR
 	                                   bottomLeft = corners))
 }
 
+/**
+ * Helper function to create squares with equal corners with different (x, y) radii.
+ *
+ * @param size The side length of the square.
+ * @param corners The (x, y) radii of the corners.
+ *
+ * @return A rounded square with equal (x, y) radii corners.
+ */
 fun MaterialTheme.roundrect(size: Dp, corners: Pair<Dp, Dp>): EllipseRect
 {
 	return EllipseRect(w = size,
@@ -84,6 +128,14 @@ fun MaterialTheme.roundrect(size: Dp, corners: Pair<Dp, Dp>): EllipseRect
 	                                   bottomLeft = corners))
 }
 
+/**
+ * Helper function to create rectangles with equal radii corners.
+ *
+ * @param size The (width, height) of the rectangle.
+ * @param radius The radius of the corners.
+ *
+ * @return A rounded rectangle with equal radii corners.
+ */
 fun MaterialTheme.roundrect(size: Pair<Dp, Dp>, radius: Dp): EllipseRect
 {
 	return EllipseRect(w = size.first,
@@ -98,6 +150,14 @@ fun MaterialTheme.roundrect(size: Pair<Dp, Dp>, radius: Dp): EllipseRect
 	                                                     second = radius)))
 }
 
+/**
+ * Helper function to create squares with equal radii corners.
+ *
+ * @param size The side length of the square.
+ * @param radius The radius of the corners.
+ *
+ * @return A rounded square with equal radii corners.
+ */
 fun MaterialTheme.roundrect(size: Dp, radius: Dp): EllipseRect
 {
 	return EllipseRect(w = size,
@@ -112,6 +172,14 @@ fun MaterialTheme.roundrect(size: Dp, radius: Dp): EllipseRect
 	                                                     second = radius)))
 }
 
+/**
+ * Helper function to create rectangles with [FourCorners].
+ *
+ * @param size The (width, height) of the rectangle.
+ * @param radii The [FourCorners] defined corners.
+ *
+ * @return A rounded rectangle with [FourCorners] defined corners.
+ */
 fun MaterialTheme.roundrect(size: Pair<Dp, Dp>, radii: FourCorners): EllipseRect
 {
 	return EllipseRect(w = size.first,
@@ -119,6 +187,14 @@ fun MaterialTheme.roundrect(size: Pair<Dp, Dp>, radii: FourCorners): EllipseRect
 	                   r = radii)
 }
 
+/**
+ * Helper function to create squares with [FourCorners].
+ *
+ * @param size The side length of the square.
+ * @param radii The [FourCorners] defined corners.
+ *
+ * @return A rounded square with [FourCorners] defined corners.
+ */
 fun MaterialTheme.roundrect(size: Dp, radii: FourCorners): EllipseRect
 {
 	return EllipseRect(w = size,

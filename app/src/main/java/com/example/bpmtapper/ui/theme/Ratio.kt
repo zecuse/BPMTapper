@@ -5,6 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.compositionLocalOf
 
+/**
+ * Names for some common fractions between 0 and 1.
+ *
+ * Ratios for tenths, fourths, thirds, and half are defined.
+ * Values for tenths take the form: Latin/Greek prefix + "enth".
+ */
 @Suppress("SpellCheckingInspection")
 data class Ratio(
 	val tenth: Float = 0.1f,
@@ -20,11 +26,16 @@ data class Ratio(
 	val triquarts: Float = 0.75f,
 	val octenth: Float = 0.8f,
 	val nonenth: Float = 0.9f,
-	val whole: Float = 1f,
 )
 
+/**
+ * @suppress
+ */
 val LocalRatio = compositionLocalOf {Ratio()}
 
+/**
+ * @suppress
+ */
 @Suppress("UnusedReceiverParameter")
 val MaterialTheme.ratio: Ratio
 	@Composable @ReadOnlyComposable get() = LocalRatio.current

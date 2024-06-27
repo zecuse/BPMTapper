@@ -20,8 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.MyColors
-import com.example.bpmtapper.ui.theme.ThemeType
+import com.example.bpmtapper.ui.theme.AppColor
+import com.example.bpmtapper.ui.theme.AppTheme
 import com.example.bpmtapper.viewmodel.FakeDao
 import com.example.bpmtapper.viewmodel.MainEvent
 import com.example.bpmtapper.viewmodel.MainViewModel
@@ -40,15 +40,15 @@ fun SettingsBar(settings: SettingsViewModel,
 		    modifier = Modifier
 			    .width(120.dp)
 			    .padding(vertical = 10.dp)) {
-			LightDark(theme = settings.state.value.theme) {
+			ThemeButton(theme = settings.state.value.theme) {
 				val newTheme = when (settings.state.value.theme)
 				{
-					ThemeType.Auto  -> ThemeType.Dark
-					ThemeType.Dark  -> ThemeType.Light
-					ThemeType.Light -> ThemeType.Auto
+					AppTheme.Auto  -> AppTheme.Dark
+					AppTheme.Dark  -> AppTheme.Light
+					AppTheme.Light -> AppTheme.Auto
 				}
 				settings.onEvent(SettingsEvent.SetTheme(newTheme))
-				if (newTheme == ThemeType.Auto && main.state.value.pickerVisibility) toggleVisibility()
+				if (newTheme == AppTheme.Auto && main.state.value.pickerVisibility) toggleVisibility()
 			}
 			ColorPicker(settings.state.value.theme) {toggleVisibility()}
 			FontFace {
@@ -62,9 +62,9 @@ fun SettingsBar(settings: SettingsViewModel,
 			                 contentPadding = PaddingValues(all = 5.dp),
 			                 modifier = Modifier.widthIn(min = 0.dp,
 			                                             max = 400.dp)) {
-				items(count = MyColors.entries.size) {colorIdx ->
+				items(count = AppColor.entries.size) {colorIdx ->
 					ColorCard(theme = settings.state.value.theme,
-					          color = MyColors.entries[colorIdx]) {
+					          color = AppColor.entries[colorIdx]) {
 						settings.onEvent(SettingsEvent.SetColor(it))
 						toggleVisibility()
 					}
@@ -76,7 +76,7 @@ fun SettingsBar(settings: SettingsViewModel,
 
 @Preview()
 @Composable
-fun SettingsBarPreview()
+private fun SettingsBarPreview()
 {
 	val settings = SettingsViewModel(FakeDao())
 	val main = MainViewModel()

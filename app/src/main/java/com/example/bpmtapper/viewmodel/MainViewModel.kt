@@ -39,7 +39,7 @@ class MainViewModel: ViewModel()
 				{
 					var sum = 0.0
 					// Older values have smaller weights, 9 down to 0
-					val pos = self.maxTimes - self.times.size
+					val pos = self.weights.size - self.times.size
 					// Calculate weighted average
 					self.times.forEachIndexed {idx, it ->
 						sum += self.weights[pos + idx] * it
@@ -84,7 +84,7 @@ class MainViewModel: ViewModel()
 						val self = this.value
 						this.value = self.copy(startTime = now,
 						                       elapsed = elapsed)
-						if (self.times.count() == self.maxTimes) self.times.poll()
+						if (self.times.count() == self.weights.size) self.times.poll()
 						self.times.offer(elapsed)
 					}
 				}

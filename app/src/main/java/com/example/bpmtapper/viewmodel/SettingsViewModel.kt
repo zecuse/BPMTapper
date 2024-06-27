@@ -10,8 +10,8 @@ import com.example.bpmtapper.database.SettingsDatabase
 import com.example.bpmtapper.model.SettingsData
 import com.example.bpmtapper.model.SettingsState
 import com.example.bpmtapper.ui.theme.AppFonts
-import com.example.bpmtapper.ui.theme.MyColors
-import com.example.bpmtapper.ui.theme.ThemeType
+import com.example.bpmtapper.ui.theme.AppColor
+import com.example.bpmtapper.ui.theme.AppTheme
 import com.example.bpmtapper.ui.theme.changeFont
 import com.example.bpmtapper.ui.theme.defaultType
 import kotlinx.coroutines.flow.Flow
@@ -114,14 +114,21 @@ class SettingsFactory(
 	}
 }
 
+/**
+ * This exists for preview and testing purposes.
+ *
+ * Previews only need this to satisfy the [SettingsViewModel] parameter. It does nothing.
+ *
+ * Tests use this as a makeshift database.
+ */
 class FakeDao: SettingsDao
 {
 	private var fakeSettings = HashMap<String, Any>()
 
 	init
 	{
-		fakeSettings["theme"] = ThemeType.Light
-		fakeSettings["color"] = MyColors.Magenta
+		fakeSettings["theme"] = AppTheme.Light
+		fakeSettings["color"] = AppColor.Magenta
 		fakeSettings["leftHanded"] = false
 		fakeSettings["spacing"] = "default"
 	}
@@ -136,8 +143,8 @@ class FakeDao: SettingsDao
 
 	override fun getSettings(): Flow<SettingsData?>
 	{
-		return MutableStateFlow(SettingsData(theme = fakeSettings["theme"] as ThemeType,
-		                                     color = fakeSettings["color"] as MyColors,
+		return MutableStateFlow(SettingsData(theme = fakeSettings["theme"] as AppTheme,
+		                                     color = fakeSettings["color"] as AppColor,
 		                                     leftHanded = fakeSettings["leftHanded"] as Boolean,
 		                                     spacing = fakeSettings["spacing"] as String))
 	}

@@ -1,8 +1,8 @@
 package com.example.bpmtapper.viewmodel
 
 import com.example.bpmtapper.model.SettingsState
-import com.example.bpmtapper.ui.theme.MyColors
-import com.example.bpmtapper.ui.theme.ThemeType
+import com.example.bpmtapper.ui.theme.AppColor
+import com.example.bpmtapper.ui.theme.AppTheme
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -50,8 +50,8 @@ class SettingsViewModelTest
 	{
 		state = settingsModel.state.value
 
-		assertThat(state.theme).isEqualTo(ThemeType.Light)
-		assertThat(state.color).isEqualTo(MyColors.Magenta)
+		assertThat(state.theme).isEqualTo(AppTheme.Light)
+		assertThat(state.color).isEqualTo(AppColor.Magenta)
 		assertThat(state.leftHanded).isFalse()
 		assertThat(state.spacing).isEqualTo("default")
 	}
@@ -59,10 +59,10 @@ class SettingsViewModelTest
 	@Test
 	fun `SetColor event, color = Blue`()
 	{
-		settingsModel.onEvent(SettingsEvent.SetColor(MyColors.Blue))
+		settingsModel.onEvent(SettingsEvent.SetColor(AppColor.Blue))
 		state = settingsModel.state.value
 
-		assertThat(state.color).isEqualTo(MyColors.Blue)
+		assertThat(state.color).isEqualTo(AppColor.Blue)
 	}
 
 	@Test
@@ -86,9 +86,9 @@ class SettingsViewModelTest
 	@Test
 	fun `SetTheme event, theme = Dark`()
 	{
-		settingsModel.onEvent(SettingsEvent.SetTheme(ThemeType.Dark))
+		settingsModel.onEvent(SettingsEvent.SetTheme(AppTheme.Dark))
 		state = settingsModel.state.value
 
-		assertThat(state.theme).isEqualTo(ThemeType.Dark)
+		assertThat(state.theme).isEqualTo(AppTheme.Dark)
 	}
 }
