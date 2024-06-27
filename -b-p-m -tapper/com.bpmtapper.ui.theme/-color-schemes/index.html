@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ColorSchemes</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            BPM Tapper
+                    </a>
+            </div>
+            <div class="library-version">
+            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":app:dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="BPM Tapper::com.bpmtapper.ui.theme/ColorSchemes///PointingToDeclaration//492899073">
+  <div class="breadcrumbs"><a href="../../../index.html">BPM Tapper</a><span class="delimiter">/</span><a href="../index.html">com.bpmtapper.ui.theme</a><span class="delimiter">/</span><span class="current">ColorSchemes</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Color</span><wbr></wbr><span><span>Schemes</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">ColorSchemes</a></div><p class="paragraph">Defines a <a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a> for each of the <a href="../-app-color/index.html">AppColor</a> values for the <a href="../-app-theme/-light/index.html">AppTheme.Light</a> and <a href="../-app-theme/-dark/index.html">AppTheme.Dark</a> themes.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1698812949%2FProperties%2F492899073" anchor-label="DarkBlueColorScheme" id="-1698812949%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-blue-color-scheme.html"><span>Dark</span><wbr></wbr><span>Blue</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1698812949%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-blue-color-scheme.html">DarkBlueColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1029365300%2FProperties%2F492899073" anchor-label="DarkCyanColorScheme" id="1029365300%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-cyan-color-scheme.html"><span>Dark</span><wbr></wbr><span>Cyan</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1029365300%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-cyan-color-scheme.html">DarkCyanColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2081906780%2FProperties%2F492899073" anchor-label="DarkGreenColorScheme" id="2081906780%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-green-color-scheme.html"><span>Dark</span><wbr></wbr><span>Green</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2081906780%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-green-color-scheme.html">DarkGreenColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1672361498%2FProperties%2F492899073" anchor-label="DarkLimeColorScheme" id="-1672361498%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-lime-color-scheme.html"><span>Dark</span><wbr></wbr><span>Lime</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1672361498%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-lime-color-scheme.html">DarkLimeColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1063524862%2FProperties%2F492899073" anchor-label="DarkMagentaColorScheme" id="-1063524862%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-magenta-color-scheme.html"><span>Dark</span><wbr></wbr><span>Magenta</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1063524862%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-magenta-color-scheme.html">DarkMagentaColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="565285055%2FProperties%2F492899073" anchor-label="DarkOrangeColorScheme" id="565285055%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-orange-color-scheme.html"><span>Dark</span><wbr></wbr><span>Orange</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="565285055%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-orange-color-scheme.html">DarkOrangeColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="278086477%2FProperties%2F492899073" anchor-label="DarkPurpleColorScheme" id="278086477%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-purple-color-scheme.html"><span>Dark</span><wbr></wbr><span>Purple</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="278086477%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-purple-color-scheme.html">DarkPurpleColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="313197546%2FProperties%2F492899073" anchor-label="DarkRedColorScheme" id="313197546%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-red-color-scheme.html"><span>Dark</span><wbr></wbr><span>Red</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="313197546%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-red-color-scheme.html">DarkRedColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1067450246%2FProperties%2F492899073" anchor-label="DarkSkyColorScheme" id="-1067450246%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-sky-color-scheme.html"><span>Dark</span><wbr></wbr><span>Sky</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1067450246%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-sky-color-scheme.html">DarkSkyColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-762304226%2FProperties%2F492899073" anchor-label="DarkSpringColorScheme" id="-762304226%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-spring-color-scheme.html"><span>Dark</span><wbr></wbr><span>Spring</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-762304226%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-spring-color-scheme.html">DarkSpringColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-106567024%2FProperties%2F492899073" anchor-label="DarkVioletColorScheme" id="-106567024%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-violet-color-scheme.html"><span>Dark</span><wbr></wbr><span>Violet</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-106567024%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-violet-color-scheme.html">DarkVioletColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-533945339%2FProperties%2F492899073" anchor-label="DarkYellowColorScheme" id="-533945339%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-dark-yellow-color-scheme.html"><span>Dark</span><wbr></wbr><span>Yellow</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-533945339%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-dark-yellow-color-scheme.html">DarkYellowColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1101668289%2FProperties%2F492899073" anchor-label="LightBlueColorScheme" id="-1101668289%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-blue-color-scheme.html"><span>Light</span><wbr></wbr><span>Blue</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1101668289%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-blue-color-scheme.html">LightBlueColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1626509960%2FProperties%2F492899073" anchor-label="LightCyanColorScheme" id="1626509960%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-cyan-color-scheme.html"><span>Light</span><wbr></wbr><span>Cyan</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1626509960%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-cyan-color-scheme.html">LightCyanColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-881445240%2FProperties%2F492899073" anchor-label="LightGreenColorScheme" id="-881445240%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-green-color-scheme.html"><span>Light</span><wbr></wbr><span>Green</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-881445240%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-green-color-scheme.html">LightGreenColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1075216838%2FProperties%2F492899073" anchor-label="LightLimeColorScheme" id="-1075216838%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-lime-color-scheme.html"><span>Light</span><wbr></wbr><span>Lime</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1075216838%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-lime-color-scheme.html">LightLimeColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1281498834%2FProperties%2F492899073" anchor-label="LightMagentaColorScheme" id="-1281498834%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-magenta-color-scheme.html"><span>Light</span><wbr></wbr><span>Magenta</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1281498834%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-magenta-color-scheme.html">LightMagentaColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1104314349%2FProperties%2F492899073" anchor-label="LightOrangeColorScheme" id="-1104314349%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-orange-color-scheme.html"><span>Light</span><wbr></wbr><span>Orange</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1104314349%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-orange-color-scheme.html">LightOrangeColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1391512927%2FProperties%2F492899073" anchor-label="LightPurpleColorScheme" id="-1391512927%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-purple-color-scheme.html"><span>Light</span><wbr></wbr><span>Purple</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1391512927%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-purple-color-scheme.html">LightPurpleColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1440838934%2FProperties%2F492899073" anchor-label="LightRedColorScheme" id="1440838934%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-red-color-scheme.html"><span>Light</span><wbr></wbr><span>Red</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1440838934%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-red-color-scheme.html">LightRedColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="60191142%2FProperties%2F492899073" anchor-label="LightSkyColorScheme" id="60191142%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-sky-color-scheme.html"><span>Light</span><wbr></wbr><span>Sky</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="60191142%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-sky-color-scheme.html">LightSkyColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1863063666%2FProperties%2F492899073" anchor-label="LightSpringColorScheme" id="1863063666%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-spring-color-scheme.html"><span>Light</span><wbr></wbr><span>Spring</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1863063666%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-spring-color-scheme.html">LightSpringColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1776166428%2FProperties%2F492899073" anchor-label="LightVioletColorScheme" id="-1776166428%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-violet-color-scheme.html"><span>Light</span><wbr></wbr><span>Violet</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1776166428%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-violet-color-scheme.html">LightVioletColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2091422553%2FProperties%2F492899073" anchor-label="LightYellowColorScheme" id="2091422553%2FProperties%2F492899073" data-filterable-set=":app:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":app:dokkaHtml/release" data-filterable-set=":app:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-light-yellow-color-scheme.html"><span>Light</span><wbr></wbr><span>Yellow</span><wbr></wbr><span>Color</span><wbr></wbr><span><span>Scheme</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2091422553%2FProperties%2F492899073"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":app:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="-light-yellow-color-scheme.html">LightYellowColorScheme</a><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/compose/material3/ColorScheme.html">ColorScheme</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
