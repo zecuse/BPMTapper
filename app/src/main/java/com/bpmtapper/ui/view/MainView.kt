@@ -1,4 +1,4 @@
-package com.example.bpmtapper.ui.view
+package com.bpmtapper.ui.view
 
 import android.content.res.Configuration
 import android.os.Bundle
@@ -16,13 +16,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.room.Room
-import com.example.bpmmeter.R
-import com.example.bpmtapper.database.SettingsDatabase
-import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.viewmodel.MainEvent
-import com.example.bpmtapper.viewmodel.MainViewModel
-import com.example.bpmtapper.viewmodel.SettingsFactory
-import com.example.bpmtapper.viewmodel.SettingsViewModel
+import com.bpmtapper.R
+import com.bpmtapper.database.SettingsDatabase
+import com.bpmtapper.ui.theme.BPMTapperTheme
+import com.bpmtapper.viewmodel.MainEvent
+import com.bpmtapper.viewmodel.MainViewModel
+import com.bpmtapper.viewmodel.SettingsFactory
+import com.bpmtapper.viewmodel.SettingsViewModel
 
 class MainActivity: ComponentActivity()
 {

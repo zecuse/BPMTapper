@@ -1,8 +1,8 @@
-package com.example.bpmtapper.viewmodel
+package com.bpmtapper.viewmodel
 
-import com.example.bpmtapper.model.SettingsState
-import com.example.bpmtapper.ui.theme.AppColor
-import com.example.bpmtapper.ui.theme.AppTheme
+import com.bpmtapper.model.SettingsState
+import com.bpmtapper.ui.theme.AppColor
+import com.bpmtapper.ui.theme.AppTheme
 
 /**
  * All of the events that can be performed by a user on the [SettingsViewModel].

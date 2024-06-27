@@ -1,6 +1,6 @@
-package com.example.bpmtapper.viewmodel
+package com.bpmtapper.viewmodel
 
-import com.example.bpmtapper.model.BPMState
+import com.bpmtapper.model.BPMState
 import com.google.common.truth.Truth.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

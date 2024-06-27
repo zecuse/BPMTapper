@@ -2,7 +2,7 @@
                "SpellCheckingInspection",
                "unused")
 
-package com.example.bpmtapper.ui.theme.shapes
+package com.bpmtapper.ui.theme.shapes
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.geometry.CornerRadius

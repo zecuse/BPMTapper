@@ -1,6 +1,6 @@
-package com.example.bpmtapper.model
+package com.bpmtapper.model
 
-import com.example.bpmtapper.viewmodel.MainViewModel
+import com.bpmtapper.viewmodel.MainViewModel
 import java.util.ArrayDeque
 import java.util.Queue
 

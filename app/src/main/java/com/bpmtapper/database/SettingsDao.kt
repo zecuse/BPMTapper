@@ -1,9 +1,9 @@
-package com.example.bpmtapper.database
+package com.bpmtapper.database
 
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Upsert
-import com.example.bpmtapper.model.SettingsData
+import com.bpmtapper.model.SettingsData
 import kotlinx.coroutines.flow.Flow
 
 @Dao

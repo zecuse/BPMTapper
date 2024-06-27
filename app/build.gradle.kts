@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-	namespace = "com.example.bpmmeter"
+	namespace = "com.bpmtapper"
 	compileSdk = 34
 
 	defaultConfig {
-		applicationId = "com.example.bpmmeter"
+		applicationId = "com.bpmtapper"
 		minSdk = 26
 		targetSdk = 34
 		versionCode = 1

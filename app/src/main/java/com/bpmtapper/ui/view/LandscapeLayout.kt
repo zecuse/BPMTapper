@@ -1,4 +1,4 @@
-package com.example.bpmtapper.ui.view
+package com.bpmtapper.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -23,15 +23,15 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bpmmeter.R
-import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.AppTheme
-import com.example.bpmtapper.ui.theme.ratio
-import com.example.bpmtapper.viewmodel.FakeDao
-import com.example.bpmtapper.viewmodel.MainEvent
-import com.example.bpmtapper.viewmodel.MainViewModel
-import com.example.bpmtapper.viewmodel.SettingsEvent
-import com.example.bpmtapper.viewmodel.SettingsViewModel
+import com.bpmtapper.R
+import com.bpmtapper.ui.theme.BPMTapperTheme
+import com.bpmtapper.ui.theme.AppTheme
+import com.bpmtapper.ui.theme.ratio
+import com.bpmtapper.viewmodel.FakeDao
+import com.bpmtapper.viewmodel.MainEvent
+import com.bpmtapper.viewmodel.MainViewModel
+import com.bpmtapper.viewmodel.SettingsEvent
+import com.bpmtapper.viewmodel.SettingsViewModel
 
 @Composable
 fun LandscapeLayout(settings: SettingsViewModel,

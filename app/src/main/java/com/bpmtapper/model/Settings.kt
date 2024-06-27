@@ -1,13 +1,13 @@
-package com.example.bpmtapper.model
+package com.bpmtapper.model
 
 import androidx.compose.material3.Typography
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.bpmtapper.database.SettingsDatabase
-import com.example.bpmtapper.ui.theme.defaultType
-import com.example.bpmtapper.ui.theme.AppColor
-import com.example.bpmtapper.ui.theme.AppTheme
-import com.example.bpmtapper.viewmodel.SettingsViewModel
+import com.bpmtapper.database.SettingsDatabase
+import com.bpmtapper.ui.theme.defaultType
+import com.bpmtapper.ui.theme.AppColor
+import com.bpmtapper.ui.theme.AppTheme
+import com.bpmtapper.viewmodel.SettingsViewModel
 
 /**
  * The backing state of the [SettingsViewModel]

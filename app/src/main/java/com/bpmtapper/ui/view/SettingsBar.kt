@@ -1,4 +1,4 @@
-package com.example.bpmtapper.ui.view
+package com.bpmtapper.ui.view
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
@@ -19,14 +19,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.AppColor
-import com.example.bpmtapper.ui.theme.AppTheme
-import com.example.bpmtapper.viewmodel.FakeDao
-import com.example.bpmtapper.viewmodel.MainEvent
-import com.example.bpmtapper.viewmodel.MainViewModel
-import com.example.bpmtapper.viewmodel.SettingsEvent
-import com.example.bpmtapper.viewmodel.SettingsViewModel
+import com.bpmtapper.ui.theme.BPMTapperTheme
+import com.bpmtapper.ui.theme.AppColor
+import com.bpmtapper.ui.theme.AppTheme
+import com.bpmtapper.viewmodel.FakeDao
+import com.bpmtapper.viewmodel.MainEvent
+import com.bpmtapper.viewmodel.MainViewModel
+import com.bpmtapper.viewmodel.SettingsEvent
+import com.bpmtapper.viewmodel.SettingsViewModel
 
 @Composable
 fun SettingsBar(settings: SettingsViewModel,

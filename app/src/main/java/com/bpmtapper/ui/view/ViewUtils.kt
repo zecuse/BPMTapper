@@ -1,4 +1,4 @@
-package com.example.bpmtapper.ui.view
+package com.bpmtapper.ui.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,14 +32,14 @@ import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.bpmmeter.R
-import com.example.bpmtapper.model.SettingsState
-import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.ColorSchemes
-import com.example.bpmtapper.ui.theme.contrast
-import com.example.bpmtapper.ui.theme.AppColor
-import com.example.bpmtapper.ui.theme.shapes.roundrect
-import com.example.bpmtapper.ui.theme.AppTheme
+import com.bpmtapper.R
+import com.bpmtapper.model.SettingsState
+import com.bpmtapper.ui.theme.BPMTapperTheme
+import com.bpmtapper.ui.theme.ColorSchemes
+import com.bpmtapper.ui.theme.contrast
+import com.bpmtapper.ui.theme.AppColor
+import com.bpmtapper.ui.theme.shapes.roundrect
+import com.bpmtapper.ui.theme.AppTheme
 
 @Composable
 fun BPMText(text: String, modifier: Modifier = Modifier)

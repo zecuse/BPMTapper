@@ -1,6 +1,6 @@
-package com.example.bpmtapper.viewmodel
+package com.bpmtapper.viewmodel
 
-import com.example.bpmtapper.model.BPMState
+import com.bpmtapper.model.BPMState
 
 /**
  * All of the events that can be performed by a user on the [MainViewModel].

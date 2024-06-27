@@ -1,4 +1,4 @@
-package com.example.bpmtapper.ui.view
+package com.bpmtapper.ui.view
 
 import android.content.pm.ActivityInfo
 import androidx.activity.ComponentActivity
@@ -12,12 +12,12 @@ import androidx.compose.ui.test.hasStateDescription
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.performClick
-import com.example.bpmmeter.R
-import com.example.bpmtapper.ui.theme.BPMTapperTheme
-import com.example.bpmtapper.ui.theme.AppColor
-import com.example.bpmtapper.viewmodel.FakeDao
-import com.example.bpmtapper.viewmodel.MainViewModel
-import com.example.bpmtapper.viewmodel.SettingsViewModel
+import com.bpmtapper.R
+import com.bpmtapper.ui.theme.BPMTapperTheme
+import com.bpmtapper.ui.theme.AppColor
+import com.bpmtapper.viewmodel.FakeDao
+import com.bpmtapper.viewmodel.MainViewModel
+import com.bpmtapper.viewmodel.SettingsViewModel
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

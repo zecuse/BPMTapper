@@ -1,8 +1,8 @@
-package com.example.bpmtapper.database
+package com.bpmtapper.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.example.bpmtapper.model.SettingsData
+import com.bpmtapper.model.SettingsData
 
 @Database(entities = [SettingsData::class],
           version = 1)

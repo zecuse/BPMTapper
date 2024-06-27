@@ -1,8 +1,8 @@
-package com.example.bpmtapper.viewmodel
+package com.bpmtapper.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.bpmtapper.model.BPMState
+import com.bpmtapper.model.BPMState
 import java.util.Locale
 
 class MainViewModel: ViewModel()
