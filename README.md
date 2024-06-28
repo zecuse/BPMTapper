@@ -1,6 +1,16 @@
 # ![Logo](./app/src/main/res/mipmap-hdpi/ic_launcher.webp "Logo") BPM Tapper
 
 A simple button tapper that displays the BPM of how fast you tap.
+This has the accuracy of your ability to tap the screen.
+If you need better accuracy, you will need to find a specialized tool.
+
+## Find the BPM of
+
+1. A repeating sound.
+2. The overall beat to a song.
+3. A repeating visual.
+4. A pulse.
+5. Any other repeating thing where you can freely tap the screen.
 
 ## Features
 
