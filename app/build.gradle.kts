@@ -57,9 +57,17 @@ android {
 		outputDirectory.set(layout.buildDirectory.dir("docs/html"))
 		dokkaSourceSets {
 			configureEach {
-				includes.from("README.md")
+				includes.from("README.md",
+				              "PrivacyPolicy.md")
 			}
 		}
+		val dokkaBaseConfig = """
+			{
+				"customAssets": ["${file("src/main/res/mipmap-hdpi/ic_launcher.webp").path.replace("\\", "/")}"],
+				"customStyleSheets": ["${file("css/logo-styles.css").path.replace("\\", "/")}"]
+			}
+		""".trimIndent()
+		pluginsMapConfiguration.set(mapOf("org.jetbrains.dokka.base.DokkaBase" to dokkaBaseConfig))
 	}
 }
 

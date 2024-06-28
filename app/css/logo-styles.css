@@ -1,0 +1,5 @@
+:root {
+	--dokka-logo-image-url: url('../images/ic_launcher.webp');
+	--dokka-logo-height: 60px;
+	--dokka-logo-width: 60px;
+}
