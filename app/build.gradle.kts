@@ -57,8 +57,7 @@ android {
 		outputDirectory.set(layout.buildDirectory.dir("docs/html"))
 		dokkaSourceSets {
 			configureEach {
-				includes.from("README.md",
-				              "PrivacyPolicy.md")
+				includes.from("README.md")
 			}
 		}
 		val dokkaBaseConfig = """
