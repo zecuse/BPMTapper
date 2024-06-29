@@ -9,15 +9,15 @@ plugins {
 }
 
 android {
-	namespace = "com.bpmtapper"
+	namespace = "com.zecuse.bpmtapper"
 	compileSdk = 34
 
 	defaultConfig {
-		applicationId = "com.bpmtapper"
+		applicationId = "com.zecuse.bpmtapper"
 		minSdk = 26
 		targetSdk = 34
-		versionCode = 1
-		versionName = "1.0"
+		versionCode = 3
+		versionName = "1.2"
 
 		testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 		vectorDrawables {
